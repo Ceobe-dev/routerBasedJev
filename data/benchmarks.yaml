@@ -1,0 +1,295 @@
+# Public benchmark facts. `raw_value` preserves the published percentage;
+# `normalized_0_1` is the value consumed by capability aggregation.
+benchmarks:
+  gpqa_diamond:
+    display_name: GPQA Diamond
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: gpqa-diamond
+    protocol_id: openai_simple_evals_gpqa
+    source_url: https://github.com/openai/simple-evals
+    limitations: Scores depend on prompt, chain-of-thought and reasoning effort.
+  humanitys_last_exam:
+    display_name: Humanity's Last Exam
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: public-2500
+    protocol_id: scale_hle_public_leaderboard
+    source_url: https://labs.scale.com/leaderboard/humanitys_last_exam
+    limitations: Includes multimodal items and uses an automatic judge; no comparable observations are cached here.
+  humaneval:
+    display_name: HumanEval
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: HumanEval-v1
+    protocol_id: openai_simple_evals_humaneval
+    source_url: https://github.com/openai/simple-evals
+    limitations: Code generation only; it is not a debugging benchmark.
+  livecodebench:
+    display_name: LiveCodeBench
+    capability_hint: coding
+    metric: code_generation_pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: release-window-required
+    protocol_id: livecodebench_codegeneration
+    source_url: https://github.com/LiveCodeBench/LiveCodeBench
+    limitations: A release window and scenario are required; no unversioned score is cached here.
+  swe_bench_verified:
+    display_name: SWE-bench Verified
+    capability_hint: debugging
+    metric: resolved_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: verified-500
+    protocol_id: swe_bench_verified
+    source_url: https://www.swebench.com/
+    limitations: Measures model plus scaffold and execution environment, not a bare model alone.
+  scicode:
+    display_name: SciCode
+    capability_hint: scientific_coding
+    metric: main_problem_resolved_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: 80-main-338-subproblems
+    protocol_id: scicode_main_problem
+    source_url: https://github.com/scicode-bench/SciCode
+    limitations: Keep separate from general coding and record whether scientific background is supplied.
+  tau2_bench:
+    display_name: tau2-bench
+    capability_hint: tool_use
+    metric: pass_k_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: v1.0.1-or-newer
+    protocol_id: tau2_domain_pass_k
+    source_url: https://github.com/sierra-research/tau2-bench
+    limitations: Evaluates a complete tool-agent-user system; no score is cached in the pure-router MVP.
+  mmlu_pro:
+    display_name: MMLU-Pro
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: neurips-2024-12000
+    protocol_id: mmlu_pro_cot_accuracy
+    source_url: https://github.com/TIGER-AI-Lab/MMLU-Pro
+    limitations: Record prompt style, answer extraction and whether chain-of-thought is enabled.
+  big_bench_hard:
+    display_name: BIG-Bench Hard
+    capability_hint: reasoning
+    metric: mean_task_accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: bbh-23-tasks
+    protocol_id: bbh_cot_mean_accuracy
+    source_url: https://github.com/suzgunmirac/BIG-Bench-Hard
+    limitations: The 23 tasks have different formats; prompt and chain-of-thought settings must match.
+  arc_challenge:
+    display_name: AI2 ARC Challenge
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: ARC-V1-Challenge
+    protocol_id: ai2_arc_challenge_accuracy
+    source_url: https://allenai.org/data/arc
+    limitations: Use the Challenge split and record few-shot and answer-normalization settings.
+  drop:
+    display_name: DROP
+    capability_hint: reasoning
+    metric: f1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: drop-public
+    protocol_id: drop_token_f1
+    source_url: https://github.com/allenai/allennlp-website/blob/master/drop.html
+    limitations: F1 and exact match are distinct metrics; this registry uses token-level F1 only.
+  gsm8k:
+    display_name: GSM8K
+    capability_hint: reasoning
+    metric: exact_match_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: gsm8k-1319-test
+    protocol_id: gsm8k_exact_match
+    source_url: https://github.com/openai/grade-school-math
+    limitations: Record calculator/tool access and answer extraction; the repository is archived but public.
+  math_500:
+    display_name: MATH-500
+    capability_hint: reasoning
+    metric: exact_match_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: math-500
+    protocol_id: openai_simple_evals_math
+    source_url: https://github.com/openai/simple-evals
+    limitations: Answer normalization and grader version must be fixed for comparable results.
+  mbpp:
+    display_name: Mostly Basic Python Problems
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: sanitized-mbpp
+    protocol_id: mbpp_sanitized_pass_at_1
+    source_url: https://github.com/google-research/google-research/tree/master/mbpp
+    limitations: Use the sanitized split and record execution environment and sampling temperature.
+  bigcodebench:
+    display_name: BigCodeBench
+    capability_hint: coding
+    metric: calibrated_pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: v0.2-full-instruct
+    protocol_id: bigcodebench_instruct_calibrated_pass_at_1
+    source_url: https://github.com/bigcode-project/bigcodebench
+    limitations: Record full versus hard subset, instruct versus complete split, backend and package version.
+  ds_1000:
+    display_name: DS-1000
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: ds-1000-1000-problems
+    protocol_id: ds1000_pass_at_1
+    source_url: https://github.com/xlang-ai/DS-1000
+    limitations: Covers seven Python data-science libraries; execution environment versions must be pinned.
+  cruxeval:
+    display_name: CRUXEval
+    capability_hint: coding
+    metric: mean_input_output_pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: cruxeval-800
+    protocol_id: cruxeval_io_pass_at_1_mean
+    source_url: https://github.com/facebookresearch/cruxeval
+    limitations: Input and output prediction are separate tasks; this protocol averages their Pass@1 scores.
+  debugbench:
+    display_name: DebugBench
+    capability_hint: debugging
+    metric: pass_rate_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: debugbench-4253
+    protocol_id: debugbench_zero_shot_pass_rate
+    source_url: https://github.com/thunlp/DebugBench
+    limitations: Record language, bug category, difficulty and runtime-feedback setting.
+  bfcl:
+    display_name: Berkeley Function Calling Leaderboard
+    capability_hint: tool_use
+    metric: overall_accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: bfcl-v4
+    protocol_id: bfcl_v4_unweighted_overall_accuracy
+    source_url: https://gorilla.cs.berkeley.edu/leaderboard
+    limitations: A live benchmark; pin BFCL version, code commit and native function-calling mode.
+  toolbench:
+    display_name: ToolBench ToolEval
+    capability_hint: tool_use
+    metric: pass_rate_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: toolbench-six-test-subsets
+    protocol_id: toolbench_tooleval_pass_rate
+    source_url: https://github.com/OpenBMB/ToolBench
+    limitations: Tool availability and evaluator model affect results; preserve the reproduction-data version.
+
+observations:
+  gpt-4.1-2025-04-14:
+    gpqa_diamond:
+      raw_value: 66.3
+      normalized_0_1: 0.663
+      eval_date: 2025-04-14
+    humaneval:
+      raw_value: 94.5
+      normalized_0_1: 0.945
+      eval_date: 2025-04-14
+  gpt-4o-2024-11-20:
+    gpqa_diamond:
+      raw_value: 46.0
+      normalized_0_1: 0.460
+      eval_date: 2024-11-20
+    humaneval:
+      raw_value: 90.2
+      normalized_0_1: 0.902
+      eval_date: 2024-11-20
+    swe_bench_verified:
+      raw_value: 33.2
+      normalized_0_1: 0.332
+      protocol_id: openai_swe_verified_best_scaffold_2024
+      eval_date: 2024-08-13
+      source_url: https://openai.com/index/introducing-swe-bench-verified/
+      notes: Published with a specific scaffold; not directly comparable with the current Bash-only leaderboard.
+  o3:
+    gpqa_diamond:
+      raw_value: 82.8
+      normalized_0_1: 0.828
+    humaneval:
+      raw_value: 87.4
+      normalized_0_1: 0.874
+  o3-mini:
+    gpqa_diamond:
+      raw_value: 74.9
+      normalized_0_1: 0.749
+    humaneval:
+      raw_value: 96.3
+      normalized_0_1: 0.963
+  claude-3-5-sonnet:
+    gpqa_diamond:
+      raw_value: 59.4
+      normalized_0_1: 0.594
+      protocol_id: vendor_reported_gpqa
+      notes: Reported value in the simple-evals table, not an OpenAI rerun.
+    humaneval:
+      raw_value: 92.0
+      normalized_0_1: 0.920
+      protocol_id: vendor_reported_humaneval
+      notes: Reported value in the simple-evals table, not an OpenAI rerun.

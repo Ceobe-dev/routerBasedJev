@@ -1,0 +1,30 @@
+# Capability definitions are configuration, not benchmark facts.
+capabilities:
+  reasoning:
+    benchmarks:
+      - gpqa_diamond
+      - humanitys_last_exam
+      - mmlu_pro
+      - big_bench_hard
+      - arc_challenge
+      - drop
+      - gsm8k
+      - math_500
+  coding:
+    benchmarks:
+      - humaneval
+      - mbpp
+      - livecodebench
+      - scicode
+      - bigcodebench
+      - ds_1000
+      - cruxeval
+  debugging:
+    benchmarks:
+      - swe_bench_verified
+      - debugbench
+  tool_use:
+    benchmarks:
+      - tau2_bench
+      - bfcl
+      - toolbench
