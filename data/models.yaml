@@ -70,3 +70,184 @@ models:
       output_per_million: 15.0
       source_url: https://www.anthropic.com/news/claude-3-5-sonnet
     context_length: 200000
+  claude-sonnet-4:
+    provider: anthropic
+    capabilities:
+      reasoning: 0.4494166666666667
+      coding: 0.581
+      debugging: 0.346
+      tool_use: 0.4928
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  deepseek-r1-0528:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.6163833333333333
+      coding: 0.8009
+      debugging: 0.286
+      tool_use: 0.3777
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.15
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  deepseek-v3-0324:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.4571333333333333
+      coding: 0.6664
+      debugging: 0.25
+      tool_use: 0.0719
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.25
+      output_per_million: 0.88
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  deepseek-v3.1-terminus:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.5370666666666667
+      coding: 0.673
+      debugging: 0.254
+      tool_use: 0.4676
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.27
+      output_per_million: 1.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  gemini-2.5-flash:
+    provider: google
+    capabilities:
+      reasoning: 0.53595
+      coding: 0.6
+      debugging: 0.182
+      tool_use: 0.3237
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.3
+      output_per_million: 2.5
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  gemini-2.5-pro:
+    provider: google
+    capabilities:
+      reasoning: 0.63565
+      coding: 0.7915
+      debugging: 0.346
+      tool_use: 0.4317
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  glm-4.6:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.57015
+      coding: 0.6313
+      debugging: 0.218
+      tool_use: 0.5396
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.6
+      output_per_million: 2.2
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  gpt-5:
+    provider: openai
+    capabilities:
+      reasoning: 0.6901833333333334
+      coding: 0.8645
+      debugging: 0.158
+      tool_use: 0.7014
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  gpt-5-chat:
+    provider: openai
+    capabilities:
+      reasoning: 0.5514333333333333
+      coding: 0.6218
+      debugging: 0.088
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1}
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  intern-s1:
+    provider: internlm
+    capabilities:
+      reasoning: 0.4803
+      coding: 0.4919
+      debugging: 0.078
+      tool_use: 0.3273
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.18
+      output_per_million: 0.54
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  kimi-k2-0905:
+    provider: moonshot
+    capabilities:
+      reasoning: 0.5426333333333333
+      coding: 0.673
+      debugging: 0.234
+      tool_use: 0.4892
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  qwen3-235b-a22b-2507:
+    provider: alibaba
+    capabilities:
+      reasoning: 0.5950833333333333
+      coding: 0.6417
+      debugging: 0.162
+      tool_use: 0.4029
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.09
+      output_per_million: 0.6
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null
+  qwen3-235b-a22b-thinking-2507:
+    provider: alibaba
+    capabilities:
+      reasoning: 0.5923
+      coding: 0.7839
+      debugging: 0.214
+      tool_use: 0.536
+    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    price:
+      input_per_million: 0.3
+      output_per_million: 2.9
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    context_length: null

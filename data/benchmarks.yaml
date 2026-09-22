@@ -241,6 +241,126 @@ benchmarks:
     protocol_id: toolbench_tooleval_pass_rate
     source_url: https://github.com/OpenBMB/ToolBench
     limitations: Tool availability and evaluator model affect results; preserve the reproduction-data version.
+  llmrb_aime_2024_2025:
+    display_name: LLMRouterBench AIME 2024+2025
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: hybrid-2024-2025-60
+    protocol_id: llmrouterbench_performance_cost_aime_hybrid_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Zero-shot aggregate from the pinned LLMRouterBench performance-cost run; prompt and math answer extraction are protocol-specific.
+  llmrb_livemathbench:
+    display_name: LLMRouterBench LiveMathBench
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: english-test-121
+    protocol_id: llmrouterbench_performance_cost_livemathbench_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Zero-shot aggregate from the pinned LLMRouterBench performance-cost run; this is a fixed English test snapshot.
+  llmrb_livecodebench:
+    display_name: LLMRouterBench LiveCodeBench
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-test-1055
+    protocol_id: llmrouterbench_performance_cost_livecodebench_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Python code-generation Pass@1 from the pinned runner and test snapshot; execution environment affects comparability.
+  llmrb_swe_bench_verified:
+    display_name: LLMRouterBench SWE-Bench Verified
+    capability_hint: debugging
+    metric: resolved_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: verified-500
+    protocol_id: llmrouterbench_performance_cost_swe_verified_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Measures a model plus the LLMRouterBench SWE-Bench scaffold and execution environment, not a bare model.
+  llmrb_gpqa_diamond:
+    display_name: LLMRouterBench GPQA Diamond
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: gpqa-diamond-198
+    protocol_id: llmrouterbench_performance_cost_gpqa_diamond_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Zero-shot multiple-choice accuracy using the pinned LLMRouterBench prompt and answer extractor.
+  llmrb_hle:
+    display_name: LLMRouterBench Humanity's Last Exam
+    capability_hint: reasoning
+    metric: llm_judge_accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-test-2158
+    protocol_id: llmrouterbench_performance_cost_hle_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: LLM-judged aggregate; grader model, grader prompt, cache and multimodal handling are part of the protocol.
+  llmrb_mmlu_pro_3000:
+    display_name: LLMRouterBench MMLU-Pro 3000
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: test-3000
+    protocol_id: llmrouterbench_performance_cost_mmlu_pro_3000_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Zero-shot accuracy on the pinned 3000-item subset, not the full MMLU-Pro test set.
+  llmrb_simpleqa:
+    display_name: LLMRouterBench SimpleQA
+    capability_hint: reasoning
+    metric: llm_judge_accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-test-4326
+    protocol_id: llmrouterbench_performance_cost_simpleqa_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: LLM-judged factuality aggregate; grader model, grader prompt and cache are part of the protocol.
+  llmrb_arenahard_v2:
+    display_name: LLMRouterBench Arena-Hard v2
+    capability_hint: reasoning
+    metric: pairwise_judge_score_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: arena-hard-v2-750
+    protocol_id: llmrouterbench_performance_cost_arenahard_v2_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Pairwise LLM-judge score against category-specific baseline answers; judge and baseline are part of the protocol.
+  llmrb_tau2_bench:
+    display_name: LLMRouterBench tau2-bench
+    capability_hint: tool_use
+    metric: success_rate_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-test-278
+    protocol_id: llmrouterbench_performance_cost_tau2_c77cb05
+    source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
+    limitations: Evaluates a complete model-tool-user system; GPT-5 Chat has no observation because the evaluated endpoint did not support tool calling.
 
 observations:
   gpt-4.1-2025-04-14:
@@ -293,3 +413,145 @@ observations:
       normalized_0_1: 0.920
       protocol_id: vendor_reported_humaneval
       notes: Reported value in the simple-evals table, not an OpenAI rerun.
+  claude-sonnet-4:
+    llmrb_aime_2024_2025: {raw_value: 36.67, normalized_0_1: 0.3667}
+    llmrb_livemathbench: {raw_value: 61.16, normalized_0_1: 0.6116}
+    llmrb_livecodebench: {raw_value: 58.10, normalized_0_1: 0.5810}
+    llmrb_swe_bench_verified: {raw_value: 34.60, normalized_0_1: 0.3460}
+    llmrb_gpqa_diamond: {raw_value: 68.69, normalized_0_1: 0.6869}
+    llmrb_hle: {raw_value: 4.82, normalized_0_1: 0.0482}
+    llmrb_mmlu_pro_3000: {raw_value: 83.17, normalized_0_1: 0.8317}
+    llmrb_simpleqa: {raw_value: 15.14, normalized_0_1: 0.1514}
+    llmrb_arenahard_v2: {raw_value: 54.67, normalized_0_1: 0.5467}
+    llmrb_tau2_bench: {raw_value: 49.28, normalized_0_1: 0.4928}
+  deepseek-r1-0528:
+    llmrb_aime_2024_2025: {raw_value: 85.00, normalized_0_1: 0.8500}
+    llmrb_livemathbench: {raw_value: 77.69, normalized_0_1: 0.7769}
+    llmrb_livecodebench: {raw_value: 80.09, normalized_0_1: 0.8009}
+    llmrb_swe_bench_verified: {raw_value: 28.60, normalized_0_1: 0.2860}
+    llmrb_gpqa_diamond: {raw_value: 79.80, normalized_0_1: 0.7980}
+    llmrb_hle: {raw_value: 15.99, normalized_0_1: 0.1599}
+    llmrb_mmlu_pro_3000: {raw_value: 84.23, normalized_0_1: 0.8423}
+    llmrb_simpleqa: {raw_value: 27.12, normalized_0_1: 0.2712}
+    llmrb_arenahard_v2: {raw_value: 63.53, normalized_0_1: 0.6353}
+    llmrb_tau2_bench: {raw_value: 37.77, normalized_0_1: 0.3777}
+  deepseek-v3-0324:
+    llmrb_aime_2024_2025: {raw_value: 43.33, normalized_0_1: 0.4333}
+    llmrb_livemathbench: {raw_value: 61.98, normalized_0_1: 0.6198}
+    llmrb_livecodebench: {raw_value: 66.64, normalized_0_1: 0.6664}
+    llmrb_swe_bench_verified: {raw_value: 25.00, normalized_0_1: 0.2500}
+    llmrb_gpqa_diamond: {raw_value: 59.60, normalized_0_1: 0.5960}
+    llmrb_hle: {raw_value: 3.61, normalized_0_1: 0.0361}
+    llmrb_mmlu_pro_3000: {raw_value: 78.00, normalized_0_1: 0.7800}
+    llmrb_simpleqa: {raw_value: 27.76, normalized_0_1: 0.2776}
+    llmrb_arenahard_v2: {raw_value: 60.13, normalized_0_1: 0.6013}
+    llmrb_tau2_bench: {raw_value: 7.19, normalized_0_1: 0.0719}
+  deepseek-v3.1-terminus:
+    llmrb_aime_2024_2025: {raw_value: 55.00, normalized_0_1: 0.5500}
+    llmrb_livemathbench: {raw_value: 73.55, normalized_0_1: 0.7355}
+    llmrb_livecodebench: {raw_value: 67.30, normalized_0_1: 0.6730}
+    llmrb_swe_bench_verified: {raw_value: 25.40, normalized_0_1: 0.2540}
+    llmrb_gpqa_diamond: {raw_value: 76.26, normalized_0_1: 0.7626}
+    llmrb_hle: {raw_value: 8.94, normalized_0_1: 0.0894}
+    llmrb_mmlu_pro_3000: {raw_value: 84.03, normalized_0_1: 0.8403}
+    llmrb_simpleqa: {raw_value: 24.46, normalized_0_1: 0.2446}
+    llmrb_arenahard_v2: {raw_value: 66.27, normalized_0_1: 0.6627}
+    llmrb_tau2_bench: {raw_value: 46.76, normalized_0_1: 0.4676}
+  gemini-2.5-flash:
+    llmrb_aime_2024_2025: {raw_value: 63.33, normalized_0_1: 0.6333}
+    llmrb_livemathbench: {raw_value: 73.55, normalized_0_1: 0.7355}
+    llmrb_livecodebench: {raw_value: 60.00, normalized_0_1: 0.6000}
+    llmrb_swe_bench_verified: {raw_value: 18.20, normalized_0_1: 0.1820}
+    llmrb_gpqa_diamond: {raw_value: 66.16, normalized_0_1: 0.6616}
+    llmrb_hle: {raw_value: 7.78, normalized_0_1: 0.0778}
+    llmrb_mmlu_pro_3000: {raw_value: 80.93, normalized_0_1: 0.8093}
+    llmrb_simpleqa: {raw_value: 29.82, normalized_0_1: 0.2982}
+    llmrb_arenahard_v2: {raw_value: 55.53, normalized_0_1: 0.5553}
+    llmrb_tau2_bench: {raw_value: 32.37, normalized_0_1: 0.3237}
+  gemini-2.5-pro:
+    llmrb_aime_2024_2025: {raw_value: 85.00, normalized_0_1: 0.8500}
+    llmrb_livemathbench: {raw_value: 50.41, normalized_0_1: 0.5041}
+    llmrb_livecodebench: {raw_value: 79.15, normalized_0_1: 0.7915}
+    llmrb_swe_bench_verified: {raw_value: 34.60, normalized_0_1: 0.3460}
+    llmrb_gpqa_diamond: {raw_value: 84.85, normalized_0_1: 0.8485}
+    llmrb_hle: {raw_value: 21.69, normalized_0_1: 0.2169}
+    llmrb_mmlu_pro_3000: {raw_value: 85.67, normalized_0_1: 0.8567}
+    llmrb_simpleqa: {raw_value: 53.77, normalized_0_1: 0.5377}
+    llmrb_arenahard_v2: {raw_value: 77.00, normalized_0_1: 0.7700}
+    llmrb_tau2_bench: {raw_value: 43.17, normalized_0_1: 0.4317}
+  glm-4.6:
+    llmrb_aime_2024_2025: {raw_value: 81.67, normalized_0_1: 0.8167}
+    llmrb_livemathbench: {raw_value: 63.64, normalized_0_1: 0.6364}
+    llmrb_livecodebench: {raw_value: 63.13, normalized_0_1: 0.6313}
+    llmrb_swe_bench_verified: {raw_value: 21.80, normalized_0_1: 0.2180}
+    llmrb_gpqa_diamond: {raw_value: 75.25, normalized_0_1: 0.7525}
+    llmrb_hle: {raw_value: 15.52, normalized_0_1: 0.1552}
+    llmrb_mmlu_pro_3000: {raw_value: 80.33, normalized_0_1: 0.8033}
+    llmrb_simpleqa: {raw_value: 25.68, normalized_0_1: 0.2568}
+    llmrb_arenahard_v2: {raw_value: 66.40, normalized_0_1: 0.6640}
+    llmrb_tau2_bench: {raw_value: 53.96, normalized_0_1: 0.5396}
+  gpt-5:
+    llmrb_aime_2024_2025: {raw_value: 88.33, normalized_0_1: 0.8833}
+    llmrb_livemathbench: {raw_value: 79.34, normalized_0_1: 0.7934}
+    llmrb_livecodebench: {raw_value: 86.45, normalized_0_1: 0.8645}
+    llmrb_swe_bench_verified: {raw_value: 15.80, normalized_0_1: 0.1580}
+    llmrb_gpqa_diamond: {raw_value: 84.85, normalized_0_1: 0.8485}
+    llmrb_hle: {raw_value: 26.32, normalized_0_1: 0.2632}
+    llmrb_mmlu_pro_3000: {raw_value: 87.37, normalized_0_1: 0.8737}
+    llmrb_simpleqa: {raw_value: 47.90, normalized_0_1: 0.4790}
+    llmrb_arenahard_v2: {raw_value: 69.73, normalized_0_1: 0.6973}
+    llmrb_tau2_bench: {raw_value: 70.14, normalized_0_1: 0.7014}
+  gpt-5-chat:
+    llmrb_aime_2024_2025: {raw_value: 71.67, normalized_0_1: 0.7167}
+    llmrb_livemathbench: {raw_value: 57.85, normalized_0_1: 0.5785}
+    llmrb_livecodebench: {raw_value: 62.18, normalized_0_1: 0.6218}
+    llmrb_swe_bench_verified: {raw_value: 8.80, normalized_0_1: 0.0880}
+    llmrb_gpqa_diamond: {raw_value: 73.74, normalized_0_1: 0.7374}
+    llmrb_hle: {raw_value: 5.70, normalized_0_1: 0.0570}
+    llmrb_mmlu_pro_3000: {raw_value: 81.40, normalized_0_1: 0.8140}
+    llmrb_simpleqa: {raw_value: 40.50, normalized_0_1: 0.4050}
+    llmrb_arenahard_v2: {raw_value: 68.87, normalized_0_1: 0.6887}
+  intern-s1:
+    llmrb_aime_2024_2025: {raw_value: 48.33, normalized_0_1: 0.4833}
+    llmrb_livemathbench: {raw_value: 68.60, normalized_0_1: 0.6860}
+    llmrb_livecodebench: {raw_value: 49.19, normalized_0_1: 0.4919}
+    llmrb_swe_bench_verified: {raw_value: 7.80, normalized_0_1: 0.0780}
+    llmrb_gpqa_diamond: {raw_value: 65.66, normalized_0_1: 0.6566}
+    llmrb_hle: {raw_value: 8.85, normalized_0_1: 0.0885}
+    llmrb_mmlu_pro_3000: {raw_value: 81.97, normalized_0_1: 0.8197}
+    llmrb_simpleqa: {raw_value: 14.77, normalized_0_1: 0.1477}
+    llmrb_arenahard_v2: {raw_value: 67.07, normalized_0_1: 0.6707}
+    llmrb_tau2_bench: {raw_value: 32.73, normalized_0_1: 0.3273}
+  kimi-k2-0905:
+    llmrb_aime_2024_2025: {raw_value: 65.00, normalized_0_1: 0.6500}
+    llmrb_livemathbench: {raw_value: 71.90, normalized_0_1: 0.7190}
+    llmrb_livecodebench: {raw_value: 67.30, normalized_0_1: 0.6730}
+    llmrb_swe_bench_verified: {raw_value: 23.40, normalized_0_1: 0.2340}
+    llmrb_gpqa_diamond: {raw_value: 73.23, normalized_0_1: 0.7323}
+    llmrb_hle: {raw_value: 6.12, normalized_0_1: 0.0612}
+    llmrb_mmlu_pro_3000: {raw_value: 80.30, normalized_0_1: 0.8030}
+    llmrb_simpleqa: {raw_value: 29.03, normalized_0_1: 0.2903}
+    llmrb_arenahard_v2: {raw_value: 71.07, normalized_0_1: 0.7107}
+    llmrb_tau2_bench: {raw_value: 48.92, normalized_0_1: 0.4892}
+  qwen3-235b-a22b-2507:
+    llmrb_aime_2024_2025: {raw_value: 76.67, normalized_0_1: 0.7667}
+    llmrb_livemathbench: {raw_value: 76.03, normalized_0_1: 0.7603}
+    llmrb_livecodebench: {raw_value: 64.17, normalized_0_1: 0.6417}
+    llmrb_swe_bench_verified: {raw_value: 16.20, normalized_0_1: 0.1620}
+    llmrb_gpqa_diamond: {raw_value: 58.59, normalized_0_1: 0.5859}
+    llmrb_hle: {raw_value: 9.22, normalized_0_1: 0.0922}
+    llmrb_mmlu_pro_3000: {raw_value: 82.77, normalized_0_1: 0.8277}
+    llmrb_simpleqa: {raw_value: 53.77, normalized_0_1: 0.5377}
+    llmrb_arenahard_v2: {raw_value: 73.07, normalized_0_1: 0.7307}
+    llmrb_tau2_bench: {raw_value: 40.29, normalized_0_1: 0.4029}
+  qwen3-235b-a22b-thinking-2507:
+    llmrb_aime_2024_2025: {raw_value: 86.67, normalized_0_1: 0.8667}
+    llmrb_livemathbench: {raw_value: 52.89, normalized_0_1: 0.5289}
+    llmrb_livecodebench: {raw_value: 78.39, normalized_0_1: 0.7839}
+    llmrb_swe_bench_verified: {raw_value: 21.40, normalized_0_1: 0.2140}
+    llmrb_gpqa_diamond: {raw_value: 80.30, normalized_0_1: 0.8030}
+    llmrb_hle: {raw_value: 7.78, normalized_0_1: 0.0778}
+    llmrb_mmlu_pro_3000: {raw_value: 79.47, normalized_0_1: 0.7947}
+    llmrb_simpleqa: {raw_value: 48.27, normalized_0_1: 0.4827}
+    llmrb_arenahard_v2: {raw_value: 73.93, normalized_0_1: 0.7393}
+    llmrb_tau2_bench: {raw_value: 53.60, normalized_0_1: 0.5360}

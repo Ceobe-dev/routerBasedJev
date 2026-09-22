@@ -10,6 +10,12 @@ capabilities:
       - drop
       - gsm8k
       - math_500
+      - llmrb_aime_2024_2025
+      - llmrb_livemathbench
+      - llmrb_gpqa_diamond
+      - llmrb_hle
+      - llmrb_mmlu_pro_3000
+      - llmrb_simpleqa
   coding:
     benchmarks:
       - humaneval
@@ -19,12 +25,15 @@ capabilities:
       - bigcodebench
       - ds_1000
       - cruxeval
+      - llmrb_livecodebench
   debugging:
     benchmarks:
       - swe_bench_verified
       - debugbench
+      - llmrb_swe_bench_verified
   tool_use:
     benchmarks:
       - tau2_bench
       - bfcl
       - toolbench
+      - llmrb_tau2_bench
