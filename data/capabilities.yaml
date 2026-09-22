@@ -16,6 +16,18 @@ capabilities:
       - llmrb_hle
       - llmrb_mmlu_pro_3000
       - llmrb_simpleqa
+      - llmrb_perf_aime_2024_2025
+      - llmrb_perf_math_500
+      - llmrb_perf_mathbench
+      - llmrb_perf_korbench
+      - llmrb_perf_knights_and_knaves
+      - llmrb_perf_bbh
+      - llmrb_perf_mmlu_pro_1000
+      - llmrb_perf_gpqa_diamond
+      - llmrb_perf_finqa
+      - llmrb_perf_medqa
+      - aa_intelligence_index_v4_3_2
+      - aa_intelligence_index_v4_3_series_estimate
   coding:
     benchmarks:
       - humaneval
@@ -26,6 +38,9 @@ capabilities:
       - ds_1000
       - cruxeval
       - llmrb_livecodebench
+      - llmrb_perf_mbpp
+      - llmrb_perf_humaneval
+      - llmrb_perf_livecodebench
   debugging:
     benchmarks:
       - swe_bench_verified

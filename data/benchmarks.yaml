@@ -361,6 +361,210 @@ benchmarks:
     protocol_id: llmrouterbench_performance_cost_tau2_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
     limitations: Evaluates a complete model-tool-user system; GPT-5 Chat has no observation because the evaluated endpoint did not support tool calling.
+  llmrb_perf_aime_2024_2025:
+    display_name: LLMRouterBench Performance AIME 2024+2025
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: hybrid-2024-2025-60
+    protocol_id: llmrouterbench_performance_aime_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot accuracy from the full performance-oriented model-pool evaluation; do not mix with the performance-cost run.
+  llmrb_perf_math_500:
+    display_name: LLMRouterBench Performance MATH-500
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: math-500-500
+    protocol_id: llmrouterbench_performance_math500_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot accuracy from the full performance-oriented model-pool evaluation; answer extraction is protocol-specific.
+  llmrb_perf_mathbench:
+    display_name: LLMRouterBench Performance MathBench
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-mathbench-150
+    protocol_id: llmrouterbench_performance_mathbench_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot accuracy on the pinned 150-item LLMRouterBench subset.
+  llmrb_perf_mbpp:
+    display_name: LLMRouterBench Performance MBPP
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-mbpp-974
+    protocol_id: llmrouterbench_performance_mbpp_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot Pass@1 from the pinned runner and execution environment.
+  llmrb_perf_humaneval:
+    display_name: LLMRouterBench Performance HumanEval
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: humaneval-164
+    protocol_id: llmrouterbench_performance_humaneval_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot Pass@1 from the pinned runner and execution environment.
+  llmrb_perf_livecodebench:
+    display_name: LLMRouterBench Performance LiveCodeBench
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-test-1055
+    protocol_id: llmrouterbench_performance_livecodebench_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot Python code-generation Pass@1 from the performance-oriented run; execution environment affects comparability.
+  llmrb_perf_korbench:
+    display_name: LLMRouterBench Performance KORBench
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-korbench-1250
+    protocol_id: llmrouterbench_performance_korbench_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Three-shot logical-reasoning accuracy under the pinned LLMRouterBench prompt.
+  llmrb_perf_knights_and_knaves:
+    display_name: LLMRouterBench Performance Knights and Knaves
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-knights-and-knaves-700
+    protocol_id: llmrouterbench_performance_knights_knaves_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot logical-reasoning accuracy under the pinned LLMRouterBench prompt.
+  llmrb_perf_bbh:
+    display_name: LLMRouterBench Performance BIG-Bench Hard
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-bbh-1080
+    protocol_id: llmrouterbench_performance_bbh_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Three-shot aggregate accuracy; prompt and answer extraction are part of the protocol.
+  llmrb_perf_mmlu_pro_1000:
+    display_name: LLMRouterBench Performance MMLU-Pro 1000
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: test-1000
+    protocol_id: llmrouterbench_performance_mmlu_pro_1000_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot accuracy on the pinned 1000-item subset, not the full MMLU-Pro test set.
+  llmrb_perf_gpqa_diamond:
+    display_name: LLMRouterBench Performance GPQA Diamond
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: gpqa-diamond-198
+    protocol_id: llmrouterbench_performance_gpqa_diamond_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot multiple-choice accuracy using the pinned prompt and answer extractor.
+  llmrb_perf_finqa:
+    display_name: LLMRouterBench Performance FinQA
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-finqa-1147
+    protocol_id: llmrouterbench_performance_finqa_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot financial question-answering accuracy under the pinned LLMRouterBench evaluator.
+  llmrb_perf_medqa:
+    display_name: LLMRouterBench Performance MedQA
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-medqa-1273
+    protocol_id: llmrouterbench_performance_medqa_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot medical question-answering accuracy under the pinned LLMRouterBench evaluator.
+  llmrb_perf_emorynlp:
+    display_name: LLMRouterBench Performance EmoryNLP
+    capability_hint: affective_understanding
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-emorynlp-697
+    protocol_id: llmrouterbench_performance_emorynlp_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot emotion-recognition accuracy; retained as a benchmark fact but not mapped to an MVP capability.
+  llmrb_perf_meld:
+    display_name: LLMRouterBench Performance MELD
+    capability_hint: affective_understanding
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: raw_value / 100
+    dataset_version: llmrouterbench-meld-1232
+    protocol_id: llmrouterbench_performance_meld_table7_acl2026
+    source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
+    limitations: Zero-shot emotion-recognition accuracy; retained as a benchmark fact but not mapped to an MVP capability.
+  aa_intelligence_index_v4_3_2:
+    display_name: Artificial Analysis Intelligence Index v4.3.2
+    capability_hint: reasoning
+    metric: composite_index_points
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: min(raw_value / 47, 1); 47 is the pinned GPT-5.6 Sol max-effort cutoff anchor
+    dataset_version: v4.3.2-2026-09-22
+    protocol_id: artificial_analysis_intelligence_index_v4_3_2
+    source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    limitations: Composite of ten reasoning, knowledge, coding, long-context, terminal, and agentic evaluations. Scores depend on the selected reasoning effort; each observation records that effort. Capability normalization is anchored to GPT-5.6 Sol max effort (47) so the raw index remains the fact source while this router's requested cutoff maps to 1.0. Snapshot pinned on 2026-09-22.
+  aa_intelligence_index_v4_3_series_estimate:
+    display_name: Artificial Analysis Intelligence Index v4.3-series Estimated
+    capability_hint: reasoning
+    metric: estimated_composite_index_points
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: min(raw_value / 47, 1); 47 is the pinned GPT-5.6 Sol max-effort cutoff anchor
+    dataset_version: v4.3-series-estimate-2026-09-22
+    protocol_id: artificial_analysis_intelligence_index_v4_3_series_estimate
+    source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    limitations: Source-labelled estimate based on a v4.3-series ten-evaluation composite; independent evaluation was pending. Kept separate from measured v4.3.2 observations and must not be treated as an independently reproduced result. Capability normalization uses the same pinned GPT-5.6 Sol cutoff anchor as measured observations. Exact patch version is recorded in observation notes when available.
 
 observations:
   gpt-4.1-2025-04-14:
@@ -555,3 +759,503 @@ observations:
     llmrb_simpleqa: {raw_value: 48.27, normalized_0_1: 0.4827}
     llmrb_arenahard_v2: {raw_value: 73.93, normalized_0_1: 0.7393}
     llmrb_tau2_bench: {raw_value: 53.60, normalized_0_1: 0.5360}
+  deep-hermes-3-llama-3-8b-preview:
+    llmrb_perf_aime_2024_2025: {raw_value: 0.00, normalized_0_1: 0.0000}
+    llmrb_perf_math_500: {raw_value: 29.80, normalized_0_1: 0.2980}
+    llmrb_perf_mathbench: {raw_value: 38.67, normalized_0_1: 0.3867}
+    llmrb_perf_mbpp: {raw_value: 54.00, normalized_0_1: 0.5400}
+    llmrb_perf_humaneval: {raw_value: 51.22, normalized_0_1: 0.5122}
+    llmrb_perf_livecodebench: {raw_value: 13.08, normalized_0_1: 0.1308}
+    llmrb_perf_korbench: {raw_value: 31.92, normalized_0_1: 0.3192}
+    llmrb_perf_knights_and_knaves: {raw_value: 15.57, normalized_0_1: 0.1557}
+    llmrb_perf_bbh: {raw_value: 49.07, normalized_0_1: 0.4907}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 36.66, normalized_0_1: 0.3666}
+    llmrb_perf_gpqa_diamond: {raw_value: 27.78, normalized_0_1: 0.2778}
+    llmrb_perf_finqa: {raw_value: 49.96, normalized_0_1: 0.4996}
+    llmrb_perf_medqa: {raw_value: 57.58, normalized_0_1: 0.5758}
+    llmrb_perf_emorynlp: {raw_value: 38.16, normalized_0_1: 0.3816}
+    llmrb_perf_meld: {raw_value: 47.16, normalized_0_1: 0.4716}
+  deepseek-r1-0528-qwen3-8b:
+    llmrb_perf_aime_2024_2025: {raw_value: 68.33, normalized_0_1: 0.6833}
+    llmrb_perf_math_500: {raw_value: 94.20, normalized_0_1: 0.9420}
+    llmrb_perf_mathbench: {raw_value: 90.00, normalized_0_1: 0.9000}
+    llmrb_perf_mbpp: {raw_value: 35.01, normalized_0_1: 0.3501}
+    llmrb_perf_humaneval: {raw_value: 25.00, normalized_0_1: 0.2500}
+    llmrb_perf_livecodebench: {raw_value: 64.74, normalized_0_1: 0.6474}
+    llmrb_perf_korbench: {raw_value: 56.00, normalized_0_1: 0.5600}
+    llmrb_perf_knights_and_knaves: {raw_value: 60.86, normalized_0_1: 0.6086}
+    llmrb_perf_bbh: {raw_value: 89.44, normalized_0_1: 0.8944}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 70.83, normalized_0_1: 0.7083}
+    llmrb_perf_gpqa_diamond: {raw_value: 60.61, normalized_0_1: 0.6061}
+    llmrb_perf_finqa: {raw_value: 70.36, normalized_0_1: 0.7036}
+    llmrb_perf_medqa: {raw_value: 81.62, normalized_0_1: 0.8162}
+    llmrb_perf_emorynlp: {raw_value: 38.74, normalized_0_1: 0.3874}
+    llmrb_perf_meld: {raw_value: 51.06, normalized_0_1: 0.5106}
+  deepseek-r1-distill-qwen-7b:
+    llmrb_perf_aime_2024_2025: {raw_value: 40.00, normalized_0_1: 0.4000}
+    llmrb_perf_math_500: {raw_value: 88.40, normalized_0_1: 0.8840}
+    llmrb_perf_mathbench: {raw_value: 88.00, normalized_0_1: 0.8800}
+    llmrb_perf_mbpp: {raw_value: 53.59, normalized_0_1: 0.5359}
+    llmrb_perf_humaneval: {raw_value: 45.12, normalized_0_1: 0.4512}
+    llmrb_perf_livecodebench: {raw_value: 41.14, normalized_0_1: 0.4114}
+    llmrb_perf_korbench: {raw_value: 45.36, normalized_0_1: 0.4536}
+    llmrb_perf_knights_and_knaves: {raw_value: 50.86, normalized_0_1: 0.5086}
+    llmrb_perf_bbh: {raw_value: 69.17, normalized_0_1: 0.6917}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 47.75, normalized_0_1: 0.4775}
+    llmrb_perf_gpqa_diamond: {raw_value: 35.86, normalized_0_1: 0.3586}
+    llmrb_perf_finqa: {raw_value: 63.30, normalized_0_1: 0.6330}
+    llmrb_perf_medqa: {raw_value: 34.80, normalized_0_1: 0.3480}
+    llmrb_perf_emorynlp: {raw_value: 27.55, normalized_0_1: 0.2755}
+    llmrb_perf_meld: {raw_value: 34.90, normalized_0_1: 0.3490}
+  fin-r1:
+    llmrb_perf_aime_2024_2025: {raw_value: 11.67, normalized_0_1: 0.1167}
+    llmrb_perf_math_500: {raw_value: 75.40, normalized_0_1: 0.7540}
+    llmrb_perf_mathbench: {raw_value: 66.67, normalized_0_1: 0.6667}
+    llmrb_perf_mbpp: {raw_value: 68.99, normalized_0_1: 0.6899}
+    llmrb_perf_humaneval: {raw_value: 77.44, normalized_0_1: 0.7744}
+    llmrb_perf_livecodebench: {raw_value: 6.82, normalized_0_1: 0.0682}
+    llmrb_perf_korbench: {raw_value: 33.20, normalized_0_1: 0.3320}
+    llmrb_perf_knights_and_knaves: {raw_value: 19.00, normalized_0_1: 0.1900}
+    llmrb_perf_bbh: {raw_value: 61.57, normalized_0_1: 0.6157}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 48.65, normalized_0_1: 0.4865}
+    llmrb_perf_gpqa_diamond: {raw_value: 27.27, normalized_0_1: 0.2727}
+    llmrb_perf_finqa: {raw_value: 68.70, normalized_0_1: 0.6870}
+    llmrb_perf_medqa: {raw_value: 63.24, normalized_0_1: 0.6324}
+    llmrb_perf_emorynlp: {raw_value: 34.72, normalized_0_1: 0.3472}
+    llmrb_perf_meld: {raw_value: 50.41, normalized_0_1: 0.5041}
+  glm-z1-9b-0414:
+    llmrb_perf_aime_2024_2025: {raw_value: 61.67, normalized_0_1: 0.6167}
+    llmrb_perf_math_500: {raw_value: 94.60, normalized_0_1: 0.9460}
+    llmrb_perf_mathbench: {raw_value: 95.33, normalized_0_1: 0.9533}
+    llmrb_perf_mbpp: {raw_value: 62.94, normalized_0_1: 0.6294}
+    llmrb_perf_humaneval: {raw_value: 60.37, normalized_0_1: 0.6037}
+    llmrb_perf_livecodebench: {raw_value: 61.52, normalized_0_1: 0.6152}
+    llmrb_perf_korbench: {raw_value: 53.84, normalized_0_1: 0.5384}
+    llmrb_perf_knights_and_knaves: {raw_value: 47.57, normalized_0_1: 0.4757}
+    llmrb_perf_bbh: {raw_value: 84.26, normalized_0_1: 0.8426}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 67.33, normalized_0_1: 0.6733}
+    llmrb_perf_gpqa_diamond: {raw_value: 56.06, normalized_0_1: 0.5606}
+    llmrb_perf_finqa: {raw_value: 68.70, normalized_0_1: 0.6870}
+    llmrb_perf_medqa: {raw_value: 71.01, normalized_0_1: 0.7101}
+    llmrb_perf_emorynlp: {raw_value: 35.01, normalized_0_1: 0.3501}
+    llmrb_perf_meld: {raw_value: 45.86, normalized_0_1: 0.4586}
+  intern-s1-mini:
+    llmrb_perf_aime_2024_2025: {raw_value: 76.67, normalized_0_1: 0.7667}
+    llmrb_perf_math_500: {raw_value: 91.40, normalized_0_1: 0.9140}
+    llmrb_perf_mathbench: {raw_value: 64.67, normalized_0_1: 0.6467}
+    llmrb_perf_mbpp: {raw_value: 44.05, normalized_0_1: 0.4405}
+    llmrb_perf_humaneval: {raw_value: 43.29, normalized_0_1: 0.4329}
+    llmrb_perf_livecodebench: {raw_value: 26.26, normalized_0_1: 0.2626}
+    llmrb_perf_korbench: {raw_value: 58.16, normalized_0_1: 0.5816}
+    llmrb_perf_knights_and_knaves: {raw_value: 79.43, normalized_0_1: 0.7943}
+    llmrb_perf_bbh: {raw_value: 83.06, normalized_0_1: 0.8306}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 56.04, normalized_0_1: 0.5604}
+    llmrb_perf_gpqa_diamond: {raw_value: 48.99, normalized_0_1: 0.4899}
+    llmrb_perf_finqa: {raw_value: 70.36, normalized_0_1: 0.7036}
+    llmrb_perf_medqa: {raw_value: 68.42, normalized_0_1: 0.6842}
+    llmrb_perf_emorynlp: {raw_value: 36.87, normalized_0_1: 0.3687}
+    llmrb_perf_meld: {raw_value: 50.41, normalized_0_1: 0.5041}
+  llama-3.1-8b-instruct:
+    llmrb_perf_aime_2024_2025: {raw_value: 8.33, normalized_0_1: 0.0833}
+    llmrb_perf_math_500: {raw_value: 49.80, normalized_0_1: 0.4980}
+    llmrb_perf_mathbench: {raw_value: 46.67, normalized_0_1: 0.4667}
+    llmrb_perf_mbpp: {raw_value: 60.68, normalized_0_1: 0.6068}
+    llmrb_perf_humaneval: {raw_value: 61.59, normalized_0_1: 0.6159}
+    llmrb_perf_livecodebench: {raw_value: 16.78, normalized_0_1: 0.1678}
+    llmrb_perf_korbench: {raw_value: 24.16, normalized_0_1: 0.2416}
+    llmrb_perf_knights_and_knaves: {raw_value: 13.71, normalized_0_1: 0.1371}
+    llmrb_perf_bbh: {raw_value: 58.70, normalized_0_1: 0.5870}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 46.65, normalized_0_1: 0.4665}
+    llmrb_perf_gpqa_diamond: {raw_value: 26.26, normalized_0_1: 0.2626}
+    llmrb_perf_finqa: {raw_value: 52.92, normalized_0_1: 0.5292}
+    llmrb_perf_medqa: {raw_value: 68.26, normalized_0_1: 0.6826}
+    llmrb_perf_emorynlp: {raw_value: 33.72, normalized_0_1: 0.3372}
+    llmrb_perf_meld: {raw_value: 48.05, normalized_0_1: 0.4805}
+  llama-3.1-8b-ultramedical:
+    llmrb_perf_aime_2024_2025: {raw_value: 0.00, normalized_0_1: 0.0000}
+    llmrb_perf_math_500: {raw_value: 42.40, normalized_0_1: 0.4240}
+    llmrb_perf_mathbench: {raw_value: 25.33, normalized_0_1: 0.2533}
+    llmrb_perf_mbpp: {raw_value: 53.90, normalized_0_1: 0.5390}
+    llmrb_perf_humaneval: {raw_value: 56.10, normalized_0_1: 0.5610}
+    llmrb_perf_livecodebench: {raw_value: 13.36, normalized_0_1: 0.1336}
+    llmrb_perf_korbench: {raw_value: 14.32, normalized_0_1: 0.1432}
+    llmrb_perf_knights_and_knaves: {raw_value: 15.43, normalized_0_1: 0.1543}
+    llmrb_perf_bbh: {raw_value: 38.06, normalized_0_1: 0.3806}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 40.26, normalized_0_1: 0.4026}
+    llmrb_perf_gpqa_diamond: {raw_value: 23.23, normalized_0_1: 0.2323}
+    llmrb_perf_finqa: {raw_value: 54.58, normalized_0_1: 0.5458}
+    llmrb_perf_medqa: {raw_value: 68.50, normalized_0_1: 0.6850}
+    llmrb_perf_emorynlp: {raw_value: 31.71, normalized_0_1: 0.3171}
+    llmrb_perf_meld: {raw_value: 42.21, normalized_0_1: 0.4221}
+  llama-3.1-nemotron-nano-8b-v1:
+    llmrb_perf_aime_2024_2025: {raw_value: 45.00, normalized_0_1: 0.4500}
+    llmrb_perf_math_500: {raw_value: 90.80, normalized_0_1: 0.9080}
+    llmrb_perf_mathbench: {raw_value: 50.00, normalized_0_1: 0.5000}
+    llmrb_perf_mbpp: {raw_value: 61.50, normalized_0_1: 0.6150}
+    llmrb_perf_humaneval: {raw_value: 62.80, normalized_0_1: 0.6280}
+    llmrb_perf_livecodebench: {raw_value: 46.07, normalized_0_1: 0.4607}
+    llmrb_perf_korbench: {raw_value: 29.52, normalized_0_1: 0.2952}
+    llmrb_perf_knights_and_knaves: {raw_value: 22.86, normalized_0_1: 0.2286}
+    llmrb_perf_bbh: {raw_value: 26.20, normalized_0_1: 0.2620}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 41.46, normalized_0_1: 0.4146}
+    llmrb_perf_gpqa_diamond: {raw_value: 33.84, normalized_0_1: 0.3384}
+    llmrb_perf_finqa: {raw_value: 31.12, normalized_0_1: 0.3112}
+    llmrb_perf_medqa: {raw_value: 41.48, normalized_0_1: 0.4148}
+    llmrb_perf_emorynlp: {raw_value: 29.41, normalized_0_1: 0.2941}
+    llmrb_perf_meld: {raw_value: 38.80, normalized_0_1: 0.3880}
+  mimo-7b-rl-0530:
+    llmrb_perf_aime_2024_2025: {raw_value: 0.00, normalized_0_1: 0.0000}
+    llmrb_perf_math_500: {raw_value: 26.60, normalized_0_1: 0.2660}
+    llmrb_perf_mathbench: {raw_value: 11.33, normalized_0_1: 0.1133}
+    llmrb_perf_mbpp: {raw_value: 56.78, normalized_0_1: 0.5678}
+    llmrb_perf_humaneval: {raw_value: 52.44, normalized_0_1: 0.5244}
+    llmrb_perf_livecodebench: {raw_value: 6.45, normalized_0_1: 0.0645}
+    llmrb_perf_korbench: {raw_value: 29.84, normalized_0_1: 0.2984}
+    llmrb_perf_knights_and_knaves: {raw_value: 4.00, normalized_0_1: 0.0400}
+    llmrb_perf_bbh: {raw_value: 29.91, normalized_0_1: 0.2991}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 20.78, normalized_0_1: 0.2078}
+    llmrb_perf_gpqa_diamond: {raw_value: 4.04, normalized_0_1: 0.0404}
+    llmrb_perf_finqa: {raw_value: 17.00, normalized_0_1: 0.1700}
+    llmrb_perf_medqa: {raw_value: 29.38, normalized_0_1: 0.2938}
+    llmrb_perf_emorynlp: {raw_value: 28.12, normalized_0_1: 0.2812}
+    llmrb_perf_meld: {raw_value: 39.69, normalized_0_1: 0.3969}
+  minicpm4.1-8b:
+    llmrb_perf_aime_2024_2025: {raw_value: 68.33, normalized_0_1: 0.6833}
+    llmrb_perf_math_500: {raw_value: 93.40, normalized_0_1: 0.9340}
+    llmrb_perf_mathbench: {raw_value: 95.33, normalized_0_1: 0.9533}
+    llmrb_perf_mbpp: {raw_value: 34.09, normalized_0_1: 0.3409}
+    llmrb_perf_humaneval: {raw_value: 32.93, normalized_0_1: 0.3293}
+    llmrb_perf_livecodebench: {raw_value: 63.70, normalized_0_1: 0.6370}
+    llmrb_perf_korbench: {raw_value: 30.96, normalized_0_1: 0.3096}
+    llmrb_perf_knights_and_knaves: {raw_value: 62.71, normalized_0_1: 0.6271}
+    llmrb_perf_bbh: {raw_value: 88.06, normalized_0_1: 0.8806}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 69.93, normalized_0_1: 0.6993}
+    llmrb_perf_gpqa_diamond: {raw_value: 52.02, normalized_0_1: 0.5202}
+    llmrb_perf_finqa: {raw_value: 67.22, normalized_0_1: 0.6722}
+    llmrb_perf_medqa: {raw_value: 65.36, normalized_0_1: 0.6536}
+    llmrb_perf_emorynlp: {raw_value: 35.72, normalized_0_1: 0.3572}
+    llmrb_perf_meld: {raw_value: 51.30, normalized_0_1: 0.5130}
+  nvidia-nemotron-nano-9b-v2:
+    llmrb_perf_aime_2024_2025: {raw_value: 70.00, normalized_0_1: 0.7000}
+    llmrb_perf_math_500: {raw_value: 93.60, normalized_0_1: 0.9360}
+    llmrb_perf_mathbench: {raw_value: 94.67, normalized_0_1: 0.9467}
+    llmrb_perf_mbpp: {raw_value: 42.09, normalized_0_1: 0.4209}
+    llmrb_perf_humaneval: {raw_value: 48.17, normalized_0_1: 0.4817}
+    llmrb_perf_livecodebench: {raw_value: 65.50, normalized_0_1: 0.6550}
+    llmrb_perf_korbench: {raw_value: 56.80, normalized_0_1: 0.5680}
+    llmrb_perf_knights_and_knaves: {raw_value: 70.71, normalized_0_1: 0.7071}
+    llmrb_perf_bbh: {raw_value: 86.48, normalized_0_1: 0.8648}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 70.13, normalized_0_1: 0.7013}
+    llmrb_perf_gpqa_diamond: {raw_value: 52.02, normalized_0_1: 0.5202}
+    llmrb_perf_finqa: {raw_value: 71.23, normalized_0_1: 0.7123}
+    llmrb_perf_medqa: {raw_value: 74.71, normalized_0_1: 0.7471}
+    llmrb_perf_emorynlp: {raw_value: 39.02, normalized_0_1: 0.3902}
+    llmrb_perf_meld: {raw_value: 46.75, normalized_0_1: 0.4675}
+  openthinker3-7b:
+    llmrb_perf_aime_2024_2025: {raw_value: 41.67, normalized_0_1: 0.4167}
+    llmrb_perf_math_500: {raw_value: 85.60, normalized_0_1: 0.8560}
+    llmrb_perf_mathbench: {raw_value: 62.67, normalized_0_1: 0.6267}
+    llmrb_perf_mbpp: {raw_value: 11.81, normalized_0_1: 0.1181}
+    llmrb_perf_humaneval: {raw_value: 7.32, normalized_0_1: 0.0732}
+    llmrb_perf_livecodebench: {raw_value: 44.17, normalized_0_1: 0.4417}
+    llmrb_perf_korbench: {raw_value: 11.04, normalized_0_1: 0.1104}
+    llmrb_perf_knights_and_knaves: {raw_value: 17.29, normalized_0_1: 0.1729}
+    llmrb_perf_bbh: {raw_value: 42.50, normalized_0_1: 0.4250}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 42.06, normalized_0_1: 0.4206}
+    llmrb_perf_gpqa_diamond: {raw_value: 31.82, normalized_0_1: 0.3182}
+    llmrb_perf_finqa: {raw_value: 61.55, normalized_0_1: 0.6155}
+    llmrb_perf_medqa: {raw_value: 52.08, normalized_0_1: 0.5208}
+    llmrb_perf_emorynlp: {raw_value: 22.81, normalized_0_1: 0.2281}
+    llmrb_perf_meld: {raw_value: 33.44, normalized_0_1: 0.3344}
+  qwen2.5-coder-7b-instruct:
+    llmrb_perf_aime_2024_2025: {raw_value: 1.67, normalized_0_1: 0.0167}
+    llmrb_perf_math_500: {raw_value: 65.20, normalized_0_1: 0.6520}
+    llmrb_perf_mathbench: {raw_value: 67.33, normalized_0_1: 0.6733}
+    llmrb_perf_mbpp: {raw_value: 75.98, normalized_0_1: 0.7598}
+    llmrb_perf_humaneval: {raw_value: 77.44, normalized_0_1: 0.7744}
+    llmrb_perf_livecodebench: {raw_value: 27.87, normalized_0_1: 0.2787}
+    llmrb_perf_korbench: {raw_value: 34.24, normalized_0_1: 0.3424}
+    llmrb_perf_knights_and_knaves: {raw_value: 20.43, normalized_0_1: 0.2043}
+    llmrb_perf_bbh: {raw_value: 57.04, normalized_0_1: 0.5704}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 45.35, normalized_0_1: 0.4535}
+    llmrb_perf_gpqa_diamond: {raw_value: 32.32, normalized_0_1: 0.3232}
+    llmrb_perf_finqa: {raw_value: 63.21, normalized_0_1: 0.6321}
+    llmrb_perf_medqa: {raw_value: 48.78, normalized_0_1: 0.4878}
+    llmrb_perf_emorynlp: {raw_value: 37.02, normalized_0_1: 0.3702}
+    llmrb_perf_meld: {raw_value: 52.60, normalized_0_1: 0.5260}
+  qwen3-8b:
+    llmrb_perf_aime_2024_2025: {raw_value: 76.67, normalized_0_1: 0.7667}
+    llmrb_perf_math_500: {raw_value: 93.60, normalized_0_1: 0.9360}
+    llmrb_perf_mathbench: {raw_value: 95.33, normalized_0_1: 0.9533}
+    llmrb_perf_mbpp: {raw_value: 54.72, normalized_0_1: 0.5472}
+    llmrb_perf_humaneval: {raw_value: 62.20, normalized_0_1: 0.6220}
+    llmrb_perf_livecodebench: {raw_value: 67.68, normalized_0_1: 0.6768}
+    llmrb_perf_korbench: {raw_value: 53.92, normalized_0_1: 0.5392}
+    llmrb_perf_knights_and_knaves: {raw_value: 77.00, normalized_0_1: 0.7700}
+    llmrb_perf_bbh: {raw_value: 83.98, normalized_0_1: 0.8398}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 69.13, normalized_0_1: 0.6913}
+    llmrb_perf_gpqa_diamond: {raw_value: 57.58, normalized_0_1: 0.5758}
+    llmrb_perf_finqa: {raw_value: 74.46, normalized_0_1: 0.7446}
+    llmrb_perf_medqa: {raw_value: 79.18, normalized_0_1: 0.7918}
+    llmrb_perf_emorynlp: {raw_value: 38.74, normalized_0_1: 0.3874}
+    llmrb_perf_meld: {raw_value: 54.22, normalized_0_1: 0.5422}
+  cogito-v1-preview-llama-8b:
+    llmrb_perf_aime_2024_2025: {raw_value: 1.67, normalized_0_1: 0.0167}
+    llmrb_perf_math_500: {raw_value: 51.20, normalized_0_1: 0.5120}
+    llmrb_perf_mathbench: {raw_value: 56.00, normalized_0_1: 0.5600}
+    llmrb_perf_mbpp: {raw_value: 51.95, normalized_0_1: 0.5195}
+    llmrb_perf_humaneval: {raw_value: 69.51, normalized_0_1: 0.6951}
+    llmrb_perf_livecodebench: {raw_value: 17.25, normalized_0_1: 0.1725}
+    llmrb_perf_korbench: {raw_value: 42.96, normalized_0_1: 0.4296}
+    llmrb_perf_knights_and_knaves: {raw_value: 24.14, normalized_0_1: 0.2414}
+    llmrb_perf_bbh: {raw_value: 69.44, normalized_0_1: 0.6944}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 57.04, normalized_0_1: 0.5704}
+    llmrb_perf_gpqa_diamond: {raw_value: 35.35, normalized_0_1: 0.3535}
+    llmrb_perf_finqa: {raw_value: 61.64, normalized_0_1: 0.6164}
+    llmrb_perf_medqa: {raw_value: 65.75, normalized_0_1: 0.6575}
+    llmrb_perf_emorynlp: {raw_value: 37.45, normalized_0_1: 0.3745}
+    llmrb_perf_meld: {raw_value: 54.95, normalized_0_1: 0.5495}
+  gemma-2-9b-it:
+    llmrb_perf_aime_2024_2025: {raw_value: 1.67, normalized_0_1: 0.0167}
+    llmrb_perf_math_500: {raw_value: 48.20, normalized_0_1: 0.4820}
+    llmrb_perf_mathbench: {raw_value: 54.67, normalized_0_1: 0.5467}
+    llmrb_perf_mbpp: {raw_value: 62.42, normalized_0_1: 0.6242}
+    llmrb_perf_humaneval: {raw_value: 64.63, normalized_0_1: 0.6463}
+    llmrb_perf_livecodebench: {raw_value: 17.25, normalized_0_1: 0.1725}
+    llmrb_perf_korbench: {raw_value: 34.64, normalized_0_1: 0.3464}
+    llmrb_perf_knights_and_knaves: {raw_value: 9.71, normalized_0_1: 0.0971}
+    llmrb_perf_bbh: {raw_value: 60.74, normalized_0_1: 0.6074}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 52.95, normalized_0_1: 0.5295}
+    llmrb_perf_gpqa_diamond: {raw_value: 27.78, normalized_0_1: 0.2778}
+    llmrb_perf_finqa: {raw_value: 64.60, normalized_0_1: 0.6460}
+    llmrb_perf_medqa: {raw_value: 63.79, normalized_0_1: 0.6379}
+    llmrb_perf_emorynlp: {raw_value: 39.74, normalized_0_1: 0.3974}
+    llmrb_perf_meld: {raw_value: 52.60, normalized_0_1: 0.5260}
+  glm-4-9b-chat:
+    llmrb_perf_aime_2024_2025: {raw_value: 1.67, normalized_0_1: 0.0167}
+    llmrb_perf_math_500: {raw_value: 49.80, normalized_0_1: 0.4980}
+    llmrb_perf_mathbench: {raw_value: 49.33, normalized_0_1: 0.4933}
+    llmrb_perf_mbpp: {raw_value: 62.83, normalized_0_1: 0.6283}
+    llmrb_perf_humaneval: {raw_value: 74.39, normalized_0_1: 0.7439}
+    llmrb_perf_livecodebench: {raw_value: 16.87, normalized_0_1: 0.1687}
+    llmrb_perf_korbench: {raw_value: 37.28, normalized_0_1: 0.3728}
+    llmrb_perf_knights_and_knaves: {raw_value: 12.43, normalized_0_1: 0.1243}
+    llmrb_perf_bbh: {raw_value: 46.94, normalized_0_1: 0.4694}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 47.05, normalized_0_1: 0.4705}
+    llmrb_perf_gpqa_diamond: {raw_value: 23.23, normalized_0_1: 0.2323}
+    llmrb_perf_finqa: {raw_value: 57.28, normalized_0_1: 0.5728}
+    llmrb_perf_medqa: {raw_value: 62.14, normalized_0_1: 0.6214}
+    llmrb_perf_emorynlp: {raw_value: 39.02, normalized_0_1: 0.3902}
+    llmrb_perf_meld: {raw_value: 55.28, normalized_0_1: 0.5528}
+  granite-3.3-8b-instruct:
+    llmrb_perf_aime_2024_2025: {raw_value: 6.67, normalized_0_1: 0.0667}
+    llmrb_perf_math_500: {raw_value: 69.00, normalized_0_1: 0.6900}
+    llmrb_perf_mathbench: {raw_value: 59.33, normalized_0_1: 0.5933}
+    llmrb_perf_mbpp: {raw_value: 36.55, normalized_0_1: 0.3655}
+    llmrb_perf_humaneval: {raw_value: 51.22, normalized_0_1: 0.5122}
+    llmrb_perf_livecodebench: {raw_value: 14.22, normalized_0_1: 0.1422}
+    llmrb_perf_korbench: {raw_value: 32.00, normalized_0_1: 0.3200}
+    llmrb_perf_knights_and_knaves: {raw_value: 21.71, normalized_0_1: 0.2171}
+    llmrb_perf_bbh: {raw_value: 31.39, normalized_0_1: 0.3139}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 44.66, normalized_0_1: 0.4466}
+    llmrb_perf_gpqa_diamond: {raw_value: 31.82, normalized_0_1: 0.3182}
+    llmrb_perf_finqa: {raw_value: 62.34, normalized_0_1: 0.6234}
+    llmrb_perf_medqa: {raw_value: 61.19, normalized_0_1: 0.6119}
+    llmrb_perf_emorynlp: {raw_value: 36.59, normalized_0_1: 0.3659}
+    llmrb_perf_meld: {raw_value: 50.32, normalized_0_1: 0.5032}
+  internlm3-8b-instruct:
+    llmrb_perf_aime_2024_2025: {raw_value: 6.67, normalized_0_1: 0.0667}
+    llmrb_perf_math_500: {raw_value: 69.00, normalized_0_1: 0.6900}
+    llmrb_perf_mathbench: {raw_value: 60.00, normalized_0_1: 0.6000}
+    llmrb_perf_mbpp: {raw_value: 60.47, normalized_0_1: 0.6047}
+    llmrb_perf_humaneval: {raw_value: 65.85, normalized_0_1: 0.6585}
+    llmrb_perf_livecodebench: {raw_value: 21.23, normalized_0_1: 0.2123}
+    llmrb_perf_korbench: {raw_value: 33.84, normalized_0_1: 0.3384}
+    llmrb_perf_knights_and_knaves: {raw_value: 25.86, normalized_0_1: 0.2586}
+    llmrb_perf_bbh: {raw_value: 61.94, normalized_0_1: 0.6194}
+    llmrb_perf_mmlu_pro_1000: {raw_value: 55.14, normalized_0_1: 0.5514}
+    llmrb_perf_gpqa_diamond: {raw_value: 33.84, normalized_0_1: 0.3384}
+    llmrb_perf_finqa: {raw_value: 61.99, normalized_0_1: 0.6199}
+    llmrb_perf_medqa: {raw_value: 67.24, normalized_0_1: 0.6724}
+    llmrb_perf_emorynlp: {raw_value: 36.87, normalized_0_1: 0.3687}
+    llmrb_perf_meld: {raw_value: 50.97, normalized_0_1: 0.5097}
+  gpt-5.4:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 39
+      normalized_0_1: 0.8298
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gpt-5-4
+      notes: Evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
+  gpt-5.5:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 38
+      normalized_0_1: 0.8085
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gpt-5-5
+      notes: Evaluated at xhigh reasoning effort; source marks the model deprecated after GPT-5.6 Sol.
+  gpt-5.6-sol:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 47
+      normalized_0_1: 1.0
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gpt-5-6-sol
+      notes: Evaluated at max reasoning effort.
+  gpt-5.6-terra:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 42
+      normalized_0_1: 0.8936
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+      notes: Evaluated at max reasoning effort.
+  gpt-5.6-luna:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 37
+      normalized_0_1: 0.7872
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+      notes: Evaluated at max reasoning effort.
+  glm-5:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 28
+      normalized_0_1: 0.5957
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/glm-5/
+      notes: Reasoning mode. Artificial Analysis explicitly labels this score as an estimate pending independent evaluation.
+  gpt-5.1:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 25
+      normalized_0_1: 0.5319
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gpt-5-1
+      notes: Evaluated at high reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
+  gpt-5.2:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 30
+      normalized_0_1: 0.6383
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gpt-5-2
+      notes: Evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
+  gpt-5.3-codex:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 33
+      normalized_0_1: 0.7021
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/comparisons/gpt-5-3-codex-vs-gpt-5-2
+      notes: Coding-specialized general text-output model evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
+  glm-5.3:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 45
+      normalized_0_1: 0.9574
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/glm-5-3
+      notes: Evaluated at max reasoning effort.
+  qwen3.8-max-0902:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 45
+      normalized_0_1: 0.9574
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/qwen3-8-max
+      notes: Pinned 0902 release.
+  deepseek-v4.1-flash:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 39
+      normalized_0_1: 0.8298
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-1-flash
+      notes: Evaluated at max reasoning effort.
+  kimi-k3:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 44
+      normalized_0_1: 0.9362
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/kimi-k3
+      notes: Evaluated at max reasoning effort.
+  mimo-v2.6-pro:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 46
+      normalized_0_1: 0.9787
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+      notes: General-purpose text model; no dedicated media model data is included.
+  step-5-preview:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 44
+      normalized_0_1: 0.9362
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+      notes: Preview model; score and availability may change before a stable release.
+  minimax-m3:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 29
+      normalized_0_1: 0.6170
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+  hy3:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 25
+      normalized_0_1: 0.5319
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+  claude-sonnet-4.6:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 30
+      normalized_0_1: 0.6383
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/releases/claude-sonnet-4-6
+      notes: Evaluated with adaptive reasoning at max effort.
+  gemini-3.1-pro-preview:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 30
+      normalized_0_1: 0.6383
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/gemini-3-1-pro-preview
+      notes: Preview model evaluated as a general-purpose reasoning model; only text-side composite results are used here.
+  glm-5.1:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 26
+      normalized_0_1: 0.5532
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/glm-5-1/
+      notes: Reasoning-mode text model; deprecated after GLM-5.2 but retained as a lineage checkpoint.
+  glm-5.2:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 34
+      normalized_0_1: 0.7234
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/glm-5-2
+      notes: Evaluated at max reasoning effort; deprecated after GLM-5.3 but retained as a lineage checkpoint.
+  deepseek-v3.2:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 21
+      normalized_0_1: 0.4468
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/deepseek-v3-2-reasoning
+      notes: Reasoning mode; source labels the score as an estimate pending independent evaluation.
+  qwen3.5-397b-a17b:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 18
+      normalized_0_1: 0.3830
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/qwen3-5-397b-a17b
+      notes: Evaluated in reasoning mode.
+  kimi-k2.5:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 23
+      normalized_0_1: 0.4894
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/kimi-k2-5
+      notes: Reasoning mode; source labels the score as an estimate pending independent evaluation. Only the text-side composite score is used.
+  minimax-m2.5:
+    aa_intelligence_index_v4_3_series_estimate:
+      raw_value: 23
+      normalized_0_1: 0.4894
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/minimax-m2-5
+      notes: Text-only reasoning model; source labels the score as an estimate pending independent evaluation.
+  deepseek-v4-pro-0813:
+    aa_intelligence_index_v4_3_2:
+      raw_value: 36
+      normalized_0_1: 0.7660
+      eval_date: 2026-09-22
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-pro
+      notes: DeepSeek V4 Pro 0813 evaluated at max reasoning effort. Pinned to the August release because the unversioned deepseek-v4-pro API name is temporarily routed to V4.1 Flash until V4.1 Pro launches.

@@ -1,6 +1,391 @@
-# Model metadata used to rebuild the cache.  Benchmark observations remain in
-# benchmarks.yaml; this file deliberately contains no copied benchmark scores.
+# Generated model-profile cache. Benchmark observations remain in
+# benchmarks.yaml and are the rebuildable source of truth.
 models:
+  claude-3-5-sonnet:
+    provider: anthropic
+    capabilities:
+      reasoning: 0.594
+      coding: 0.92
+    capability_benchmark_counts:
+      reasoning: 1
+      coding: 1
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://www.anthropic.com/news/claude-3-5-sonnet
+    latency_p50_seconds: null
+    context_length: 200000
+  claude-sonnet-4:
+    provider: anthropic
+    capabilities:
+      reasoning: 0.44941666666666663
+      coding: 0.581
+      debugging: 0.346
+      tool_use: 0.4928
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  claude-sonnet-4.6:
+    provider: anthropic
+    capabilities:
+      reasoning: 0.6383
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: 0.3
+      source_url: https://artificialanalysis.ai/models/releases/claude-sonnet-4-6
+    latency_p50_seconds: null
+    context_length: 1000000
+  cogito-v1-preview-llama-8b:
+    provider: deepcogito
+    capabilities:
+      reasoning: 0.46519000000000005
+      coding: 0.46236666666666665
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deep-hermes-3-llama-3-8b-preview:
+    provider: nous-research
+    capabilities:
+      reasoning: 0.33701
+      coding: 0.39433333333333337
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-0528:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.6163833333333334
+      coding: 0.8009
+      debugging: 0.286
+      tool_use: 0.3777
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.15
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-0528-qwen3-8b:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.7422500000000001
+      coding: 0.41583333333333333
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-distill-qwen-7b:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.5635
+      coding: 0.4661666666666667
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3-0324:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.45713333333333334
+      coding: 0.6664
+      debugging: 0.25
+      tool_use: 0.0719
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.25
+      output_per_million: 0.88
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3.1-terminus:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.5370666666666667
+      coding: 0.673
+      debugging: 0.254
+      tool_use: 0.4676
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.27
+      output_per_million: 1.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3.2:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.4468
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.28
+      output_per_million: 0.42
+      cached_input_per_million: 0.014
+      source_url: https://artificialanalysis.ai/models/deepseek-v3-2-reasoning
+    latency_p50_seconds: null
+    context_length: 128000
+  deepseek-v4-pro-0813:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.766
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.32
+      output_per_million: 3.96
+      cached_input_per_million: 0.0396
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-pro
+    latency_p50_seconds: null
+    context_length: 1000000
+  deepseek-v4.1-flash:
+    provider: deepseek
+    capabilities:
+      reasoning: 0.8298
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.3
+      output_per_million: 1.2
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-1-flash
+    latency_p50_seconds: null
+    context_length: 1000000
+  fin-r1:
+    provider: sufe-aiflm-lab
+    capabilities:
+      reasoning: 0.47537
+      coding: 0.5108333333333334
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  gemini-2.5-flash:
+    provider: google
+    capabilities:
+      reasoning: 0.53595
+      coding: 0.6
+      debugging: 0.182
+      tool_use: 0.3237
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.3
+      output_per_million: 2.5
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gemini-2.5-pro:
+    provider: google
+    capabilities:
+      reasoning: 0.6356499999999999
+      coding: 0.7915
+      debugging: 0.346
+      tool_use: 0.4317
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gemini-3.1-pro-preview:
+    provider: google
+    capabilities:
+      reasoning: 0.6383
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 2.0
+      output_per_million: 12.0
+      cached_input_per_million: 0.2
+      source_url: https://artificialanalysis.ai/models/gemini-3-1-pro-preview
+    latency_p50_seconds: null
+    context_length: 1000000
+  gemma-2-9b-it:
+    provider: google
+    capabilities:
+      reasoning: 0.41875
+      coding: 0.48100000000000004
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  glm-4-9b-chat:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.38715
+      coding: 0.5136333333333333
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  glm-4.6:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.57015
+      coding: 0.6313
+      debugging: 0.218
+      tool_use: 0.5396
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.6
+      output_per_million: 2.2
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  glm-5:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.5957
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.0
+      output_per_million: 3.2
+      cached_input_per_million: 0.2
+      source_url: https://artificialanalysis.ai/models/glm-5/
+    latency_p50_seconds: null
+    context_length: 200000
+  glm-5.1:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.5532
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.2
+      output_per_million: 4.4
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/glm-5-1/
+    latency_p50_seconds: null
+    context_length: 200000
+  glm-5.2:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.7234
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.4
+      output_per_million: 4.4
+      cached_input_per_million: 0.26
+      source_url: https://artificialanalysis.ai/models/glm-5-2
+    latency_p50_seconds: null
+    context_length: 1000000
+  glm-5.3:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.9574
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.4
+      output_per_million: 4.4
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/glm-5-3
+    latency_p50_seconds: null
+    context_length: 1000000
+  glm-z1-9b-0414:
+    provider: z-ai
+    capabilities:
+      reasoning: 0.70037
+      coding: 0.6161
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
   gpt-4.1-2025-04-14:
     provider: openai
     capabilities:
@@ -14,6 +399,7 @@ models:
       output_per_million: 8.0
       cached_input_per_million: 0.5
       source_url: https://developers.openai.com/api/docs/models/gpt-4.1
+    latency_p50_seconds: null
     context_length: 1047576
   gpt-4o-2024-11-20:
     provider: openai
@@ -30,7 +416,399 @@ models:
       output_per_million: 10.0
       cached_input_per_million: 1.25
       source_url: https://developers.openai.com/api/docs/models/gpt-4o
+    latency_p50_seconds: null
     context_length: 128000
+  gpt-5:
+    provider: openai
+    capabilities:
+      reasoning: 0.6901833333333333
+      coding: 0.8645
+      debugging: 0.158
+      tool_use: 0.7014
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gpt-5-chat:
+    provider: openai
+    capabilities:
+      reasoning: 0.5514333333333333
+      coding: 0.6218
+      debugging: 0.088
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gpt-5.1:
+    provider: openai
+    capabilities:
+      reasoning: 0.5319
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: 0.125
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.1
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.2:
+    provider: openai
+    capabilities:
+      reasoning: 0.6383
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.75
+      output_per_million: 14.0
+      cached_input_per_million: 0.175
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.2
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.3-codex:
+    provider: openai
+    capabilities:
+      reasoning: 0.7021
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 1.75
+      output_per_million: 14.0
+      cached_input_per_million: 0.175
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.3-codex
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.4:
+    provider: openai
+    capabilities:
+      reasoning: 0.8298
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 2.5
+      output_per_million: 15.0
+      cached_input_per_million: 0.25
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.4
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.5:
+    provider: openai
+    capabilities:
+      reasoning: 0.8085
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 5.0
+      output_per_million: 30.0
+      cached_input_per_million: 0.5
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.5
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-luna:
+    provider: openai
+    capabilities:
+      reasoning: 0.7872
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.2
+      output_per_million: 1.2
+      cached_input_per_million: 0.02
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-luna
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-sol:
+    provider: openai
+    capabilities:
+      reasoning: 1.0
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 4.0
+      output_per_million: 20.0
+      cached_input_per_million: 0.4
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-sol
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-terra:
+    provider: openai
+    capabilities:
+      reasoning: 0.8936
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 2.0
+      output_per_million: 12.0
+      cached_input_per_million: 0.2
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-terra
+    latency_p50_seconds: null
+    context_length: 1050000
+  granite-3.3-8b-instruct:
+    provider: ibm
+    capabilities:
+      reasoning: 0.42011000000000004
+      coding: 0.3399666666666667
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  hy3:
+    provider: tencent
+    capabilities:
+      reasoning: 0.5319
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 256000
+  intern-s1:
+    provider: internlm
+    capabilities:
+      reasoning: 0.4803
+      coding: 0.4919
+      debugging: 0.078
+      tool_use: 0.3273
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.18
+      output_per_million: 0.54
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  intern-s1-mini:
+    provider: internlm
+    capabilities:
+      reasoning: 0.6972
+      coding: 0.3786666666666667
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  internlm3-8b-instruct:
+    provider: internlm
+    capabilities:
+      reasoning: 0.47551999999999994
+      coding: 0.49183333333333334
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  kimi-k2-0905:
+    provider: moonshot
+    capabilities:
+      reasoning: 0.5426333333333333
+      coding: 0.673
+      debugging: 0.234
+      tool_use: 0.4892
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  kimi-k2.5:
+    provider: moonshot
+    capabilities:
+      reasoning: 0.4894
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.6
+      output_per_million: 2.75
+      cached_input_per_million: 0.35
+      source_url: https://artificialanalysis.ai/models/kimi-k2-5
+    latency_p50_seconds: null
+    context_length: 256000
+  kimi-k3:
+    provider: moonshot
+    capabilities:
+      reasoning: 0.9362
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/kimi-k3
+    latency_p50_seconds: null
+    context_length: 1050000
+  llama-3.1-8b-instruct:
+    provider: meta
+    capabilities:
+      reasoning: 0.39546000000000003
+      coding: 0.4635
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  llama-3.1-8b-ultramedical:
+    provider: meta
+    capabilities:
+      reasoning: 0.32211
+      coding: 0.4112
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  llama-3.1-nemotron-nano-8b-v1:
+    provider: nvidia
+    capabilities:
+      reasoning: 0.41228
+      coding: 0.5679
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  mimo-7b-rl-0530:
+    provider: xiaomi
+    capabilities:
+      reasoning: 0.17288
+      coding: 0.3855666666666666
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  mimo-v2.6-pro:
+    provider: xiaomi
+    capabilities:
+      reasoning: 0.9787
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000
+  minicpm4.1-8b:
+    provider: openbmb
+    capabilities:
+      reasoning: 0.69332
+      coding: 0.4357333333333333
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  minimax-m2.5:
+    provider: minimax
+    capabilities:
+      reasoning: 0.4894
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.3
+      output_per_million: 1.2
+      cached_input_per_million: 0.03
+      source_url: https://artificialanalysis.ai/models/minimax-m2-5
+    latency_p50_seconds: null
+    context_length: 205000
+  minimax-m3:
+    provider: minimax
+    capabilities:
+      reasoning: 0.617
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000
+  nvidia-nemotron-nano-9b-v2:
+    provider: nvidia
+    capabilities:
+      reasoning: 0.7403500000000001
+      coding: 0.5192
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
   o3:
     provider: openai
     capabilities:
@@ -42,7 +820,9 @@ models:
     price:
       input_per_million: null
       output_per_million: null
+      cached_input_per_million: null
       source_url: null
+    latency_p50_seconds: null
     context_length: 200000
   o3-mini:
     provider: openai
@@ -55,173 +835,39 @@ models:
     price:
       input_per_million: null
       output_per_million: null
+      cached_input_per_million: null
       source_url: null
+    latency_p50_seconds: null
     context_length: 200000
-  claude-3-5-sonnet:
-    provider: anthropic
+  openthinker3-7b:
+    provider: open-thoughts
     capabilities:
-      reasoning: 0.594
-      coding: 0.92
+      reasoning: 0.44828
+      coding: 0.211
     capability_benchmark_counts:
-      reasoning: 1
-      coding: 1
+      reasoning: 10
+      coding: 3
     price:
-      input_per_million: 3.0
-      output_per_million: 15.0
-      source_url: https://www.anthropic.com/news/claude-3-5-sonnet
-    context_length: 200000
-  claude-sonnet-4:
-    provider: anthropic
-    capabilities:
-      reasoning: 0.4494166666666667
-      coding: 0.581
-      debugging: 0.346
-      tool_use: 0.4928
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 3.0
-      output_per_million: 15.0
+      input_per_million: null
+      output_per_million: null
       cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+      source_url: null
+    latency_p50_seconds: null
     context_length: null
-  deepseek-r1-0528:
-    provider: deepseek
+  qwen2.5-coder-7b-instruct:
+    provider: alibaba
     capabilities:
-      reasoning: 0.6163833333333333
-      coding: 0.8009
-      debugging: 0.286
-      tool_use: 0.3777
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+      reasoning: 0.43556999999999996
+      coding: 0.6043
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
     price:
-      input_per_million: 0.5
-      output_per_million: 2.15
+      input_per_million: null
+      output_per_million: null
       cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  deepseek-v3-0324:
-    provider: deepseek
-    capabilities:
-      reasoning: 0.4571333333333333
-      coding: 0.6664
-      debugging: 0.25
-      tool_use: 0.0719
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.25
-      output_per_million: 0.88
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  deepseek-v3.1-terminus:
-    provider: deepseek
-    capabilities:
-      reasoning: 0.5370666666666667
-      coding: 0.673
-      debugging: 0.254
-      tool_use: 0.4676
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.27
-      output_per_million: 1.0
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  gemini-2.5-flash:
-    provider: google
-    capabilities:
-      reasoning: 0.53595
-      coding: 0.6
-      debugging: 0.182
-      tool_use: 0.3237
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.3
-      output_per_million: 2.5
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  gemini-2.5-pro:
-    provider: google
-    capabilities:
-      reasoning: 0.63565
-      coding: 0.7915
-      debugging: 0.346
-      tool_use: 0.4317
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 1.25
-      output_per_million: 10.0
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  glm-4.6:
-    provider: z-ai
-    capabilities:
-      reasoning: 0.57015
-      coding: 0.6313
-      debugging: 0.218
-      tool_use: 0.5396
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.6
-      output_per_million: 2.2
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  gpt-5:
-    provider: openai
-    capabilities:
-      reasoning: 0.6901833333333334
-      coding: 0.8645
-      debugging: 0.158
-      tool_use: 0.7014
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 1.25
-      output_per_million: 10.0
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  gpt-5-chat:
-    provider: openai
-    capabilities:
-      reasoning: 0.5514333333333333
-      coding: 0.6218
-      debugging: 0.088
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1}
-    price:
-      input_per_million: 1.25
-      output_per_million: 10.0
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  intern-s1:
-    provider: internlm
-    capabilities:
-      reasoning: 0.4803
-      coding: 0.4919
-      debugging: 0.078
-      tool_use: 0.3273
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.18
-      output_per_million: 0.54
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
-    context_length: null
-  kimi-k2-0905:
-    provider: moonshot
-    capabilities:
-      reasoning: 0.5426333333333333
-      coding: 0.673
-      debugging: 0.234
-      tool_use: 0.4892
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
-    price:
-      input_per_million: 0.5
-      output_per_million: 2.0
-      cached_input_per_million: null
-      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+      source_url: null
+    latency_p50_seconds: null
     context_length: null
   qwen3-235b-a22b-2507:
     provider: alibaba
@@ -230,12 +876,17 @@ models:
       coding: 0.6417
       debugging: 0.162
       tool_use: 0.4029
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
     price:
       input_per_million: 0.09
       output_per_million: 0.6
       cached_input_per_million: null
       source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
     context_length: null
   qwen3-235b-a22b-thinking-2507:
     provider: alibaba
@@ -244,10 +895,69 @@ models:
       coding: 0.7839
       debugging: 0.214
       tool_use: 0.536
-    capability_benchmark_counts: {reasoning: 6, coding: 1, debugging: 1, tool_use: 1}
+    capability_benchmark_counts:
+      reasoning: 6
+      coding: 1
+      debugging: 1
+      tool_use: 1
     price:
       input_per_million: 0.3
       output_per_million: 2.9
       cached_input_per_million: null
       source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
     context_length: null
+  qwen3-8b:
+    provider: alibaba
+    capabilities:
+      reasoning: 0.76085
+      coding: 0.6153333333333334
+    capability_benchmark_counts:
+      reasoning: 10
+      coding: 3
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  qwen3.5-397b-a17b:
+    provider: alibaba
+    capabilities:
+      reasoning: 0.383
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 0.6
+      output_per_million: 3.6
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/qwen3-5-397b-a17b
+    latency_p50_seconds: null
+    context_length: 262000
+  qwen3.8-max-0902:
+    provider: alibaba
+    capabilities:
+      reasoning: 0.9574
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: 2.0
+      output_per_million: 6.0
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/qwen3-8-max
+    latency_p50_seconds: null
+    context_length: 984000
+  step-5-preview:
+    provider: stepfun
+    capabilities:
+      reasoning: 0.9362
+    capability_benchmark_counts:
+      reasoning: 1
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000
