@@ -56,6 +56,7 @@ JEV_MODEL=jev-latest
 JEV_TIMEOUT_SECONDS=30
 JEV_MAX_RETRIES=2
 JEV_RETRY_BACKOFF_SECONDS=0.5
+JEV_REQUESTION_CONFIDENCE_THRESHOLD=0.6
 ```
 
 项目会自动读取根目录下的 `.env`。该文件已被 Git 忽略，仓库只提交 `.env.example`，不要提交真实凭据。
@@ -94,7 +95,9 @@ python main.py "修复这段代码" --max-latency 2
 | `--max-latency` | 最大 p50 延迟（秒） |
 | `--registry` | 自定义 `models.yaml` 路径 |
 
-CLI 输出一个 JSON 格式的 `RouteDecision`。成功时 `error` 为 `null`；可预期的配置、Registry、Jev 或路由异常也使用相同对象返回，并在 `error` 中提供结构化错误信息。
+CLI 输出一个 JSON 格式的 `RouteDecision`。`confidences` 按能力给出 Jev 最终采用的置信度；成功时 `error` 为 `null`。可预期的配置、Registry、Jev 或路由异常也使用相同对象返回，并在 `error` 中提供结构化错误信息。
+
+Jev 首轮会预测全部能力。某项能力的 confidence 低于 `JEV_REQUESTION_CONFIDENCE_THRESHOLD` 时，Predictor 最多再质询两轮；每轮只询问仍低置信度的能力。最终逐能力选择 confidence 最高的一轮，并确保 requirement/confidence 来自同一轮，避免低置信度后续结果覆盖更可靠的早期结果。第二、三轮的逐能力 instructions 配置在 `data/jev_requestion_prompt.yaml`，空值会沿用首轮原始 instructions。
 
 ### 4. 通过 Python 使用
 
@@ -162,6 +165,7 @@ routerBasedJev/
 ├── data/
 │   ├── benchmarks.yaml           # Benchmark 定义与原始成绩
 │   ├── capabilities.yaml         # Benchmark 到 capability 的映射
+│   ├── jev_requestion_prompt.yaml # 第二、三轮逐能力提示词
 │   └── models.yaml               # 模型元数据与预计算画像
 ├── .env.example                  # Jev 运行参数模板
 └── pyproject.toml                # 项目与依赖配置

@@ -67,13 +67,13 @@ def main(argv: list[str] | None = None, *, router: Router | None = None) -> int:
         finally:
             if router is None:
                 active_router.close()
-        print(json.dumps(decision.model_dump(mode="json"), ensure_ascii=False, separators=(",", ":")))
+        print(json.dumps(decision.model_dump(mode="json"), ensure_ascii=False, indent=2))
         return 0 if decision.error is None else 1
     except RouterError as exc:
         # Construction/configuration failures happen before Router.route can
         # create its envelope, so the CLI emits the same error object shape.
         decision = RouteDecision.model_validate({"error": exc.as_route_error().model_dump(mode="json")})
-        print(json.dumps(decision.model_dump(mode="json"), ensure_ascii=False, separators=(",", ":")))
+        print(json.dumps(decision.model_dump(mode="json"), ensure_ascii=False, indent=2))
         return 1
 
 

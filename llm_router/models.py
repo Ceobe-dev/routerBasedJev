@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator, model_validator
 
 Score = Annotated[float, Field(ge=0.0, le=1.0, allow_inf_nan=False)]
 Tier = Literal["efficiency", "balanced", "intelligence"]
@@ -89,7 +89,7 @@ class RequirementPrediction(FrozenModel):
     """Task capability requirements and predictor certainty."""
 
     requirements: dict[str, Score]
-    confidence: Score
+    confidences: dict[str, Score]
 
     @field_validator("requirements")
     @classmethod
@@ -97,6 +97,12 @@ class RequirementPrediction(FrozenModel):
         if not value:
             raise ValueError("prediction needs at least one requirement")
         return value
+
+    @model_validator(mode="after")
+    def require_matching_confidences(self) -> "RequirementPrediction":
+        if set(self.confidences) != set(self.requirements):
+            raise ValueError("prediction confidences must match requirement capabilities")
+        return self
 
 
 class RouteError(FrozenModel):
@@ -115,9 +121,9 @@ class RouteDecision(FrozenModel):
     provider: str | None = None
     tier: Tier = "balanced"
     requirements: dict[str, Score] = Field(default_factory=dict)
+    confidences: dict[str, Score] = Field(default_factory=dict)
     shortfall: Annotated[float, Field(ge=0, allow_inf_nan=False)] | None = None
     success_probability: Score | None = None
-    confidence: Score | None = None
     fallback: bool = False
     reason: str = ""
     error: RouteError | None = None

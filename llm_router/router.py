@@ -96,8 +96,7 @@ class Router:
 
             prediction = self.predictor.predict(task)
             if not isinstance(prediction, RequirementPrediction):
-                # Custom predictors may return a plain mapping for convenience,
-                # but confidence is still required to preserve the core contract.
+                # Custom predictors may return a plain mapping for convenience.
                 if isinstance(prediction, Mapping) and "requirements" in prediction:
                     try:
                         prediction = RequirementPrediction.model_validate(prediction)
@@ -144,7 +143,7 @@ class Router:
             return decision.model_copy(
                 update={
                     "requirements": dict(prediction.requirements),
-                    "confidence": prediction.confidence,
+                    "confidences": dict(prediction.confidences),
                 }
             )
         except RouterError as exc:

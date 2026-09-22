@@ -7,17 +7,22 @@ boundary replaceable in deployments without TypeSafe.
 
 from __future__ import annotations
 
+import json
 import math
 import os
+import sys
 import time
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
 
 import httpx
 from dotenv import load_dotenv
 
-from .errors import ConfigurationError, PredictorError
+from .errors import ConfigurationError, PredictorError, RouterError
 from .models import RequirementPrediction
+from .registry import load_yaml
 
 
 @runtime_checkable
@@ -35,6 +40,31 @@ DEFAULT_CAPABILITIES: dict[str, str] = {
     "tool_use": "How much tool-use ability does this task require?",
 }
 
+DEFAULT_PRINT_JEV_IO = True
+DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD = 0.6
+DEFAULT_REQUESTION_PROMPT_PATH = (
+    Path(__file__).resolve().parent.parent / "data" / "jev_requestion_prompt.yaml"
+)
+REQUESTION_ROUNDS = (2, 3)
+
+
+@dataclass(frozen=True)
+class CapabilityPrediction:
+    """One capability result, kept together with the round that produced it."""
+
+    requirement: float
+    confidence: float
+    round_number: int
+
+
+@dataclass(frozen=True)
+class QuestionRound:
+    """One completed semantic question round inside the Jev predictor."""
+
+    number: int
+    capabilities: tuple[str, ...]
+    predictions: dict[str, CapabilityPrediction]
+
 
 def _finite_number(value: Any, *, label: str) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
@@ -43,6 +73,62 @@ def _finite_number(value: Any, *, label: str) -> float:
     if not math.isfinite(number):
         raise PredictorError(f"{label} must be finite", details={"field": label})
     return number
+
+
+def _requestion_threshold(value: Any, *, label: str) -> float:
+    if isinstance(value, bool):
+        raise ConfigurationError(f"{label} must be a number between 0 and 1")
+    try:
+        number = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ConfigurationError(f"{label} must be a number between 0 and 1") from exc
+    if not math.isfinite(number) or not 0 <= number <= 1:
+        raise ConfigurationError(f"{label} must be a number between 0 and 1")
+    return number
+
+
+def _normalize_requestion_prompts(
+    rounds: Any,
+) -> dict[int, dict[str, str]]:
+    if not isinstance(rounds, Mapping):
+        raise ConfigurationError("Jev re-question prompt YAML needs a rounds mapping")
+    normalized: dict[int, dict[str, str]] = {}
+    for round_number in REQUESTION_ROUNDS:
+        definition = rounds.get(round_number, rounds.get(str(round_number)))
+        if not isinstance(definition, Mapping):
+            raise ConfigurationError(
+                f"Jev re-question prompt YAML needs round {round_number}"
+            )
+        instructions = definition.get("instructions")
+        if not isinstance(instructions, Mapping):
+            raise ConfigurationError(
+                f"Jev re-question round {round_number} needs an instructions mapping"
+            )
+        prompts: dict[str, str] = {}
+        for capability, prompt in instructions.items():
+            if not isinstance(capability, str) or not capability.strip():
+                raise ConfigurationError(
+                    f"Jev re-question round {round_number} has an invalid capability name"
+                )
+            if prompt is None:
+                prompt = ""
+            if not isinstance(prompt, str):
+                raise ConfigurationError(
+                    f"Jev re-question prompt for {capability!r} in round {round_number} must be a string"
+                )
+            prompts[capability] = prompt
+        normalized[round_number] = prompts
+    return normalized
+
+
+def _load_requestion_prompts(path: str | Path) -> dict[int, dict[str, str]]:
+    try:
+        document = load_yaml(path)
+    except RouterError as exc:
+        raise ConfigurationError(f"unable to load Jev re-question prompts: {path}") from exc
+    if not isinstance(document, Mapping):
+        raise ConfigurationError("Jev re-question prompt YAML must be a mapping")
+    return _normalize_requestion_prompts(document.get("rounds"))
 
 
 class JevPredictor:
@@ -60,6 +146,9 @@ class JevPredictor:
         capabilities: Mapping[str, Any] | None = None,
         max_retries: int = 2,
         retry_backoff_seconds: float = 0.0,
+        requestion_confidence_threshold: float = DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD,
+        requestion_prompts: Mapping[int | str, Any] | None = None,
+        print_io: bool = DEFAULT_PRINT_JEV_IO,
     ) -> None:
         if not isinstance(api_key, str) or not api_key.strip():
             raise ConfigurationError("TYPESAFE_API_KEY is required")
@@ -93,6 +182,17 @@ class JevPredictor:
         descriptions = dict(capability_descriptions if capability_descriptions is not None else capabilities or DEFAULT_CAPABILITIES)
         if not descriptions or any(not isinstance(k, str) or not k.strip() for k in descriptions):
             raise ConfigurationError("capability_descriptions must contain named capabilities")
+        threshold = _requestion_threshold(
+            requestion_confidence_threshold,
+            label="requestion_confidence_threshold",
+        )
+        if not isinstance(print_io, bool):
+            raise ConfigurationError("print_io must be a boolean")
+        prompts = (
+            _load_requestion_prompts(DEFAULT_REQUESTION_PROMPT_PATH)
+            if requestion_prompts is None
+            else _normalize_requestion_prompts(requestion_prompts)
+        )
 
         self.api_key = api_key.strip()
         self.base_url = base_url.rstrip("/")
@@ -103,6 +203,9 @@ class JevPredictor:
         self.capability_descriptions = descriptions
         self.max_retries = max_retries
         self.retry_backoff_seconds = backoff
+        self.requestion_confidence_threshold = threshold
+        self.requestion_prompts = prompts
+        self.print_io = print_io
 
     def close(self) -> None:
         """Release an internally-created HTTP connection pool."""
@@ -143,6 +246,13 @@ class JevPredictor:
             raise ConfigurationError(
                 "JEV_MAX_RETRIES and JEV_RETRY_BACKOFF_SECONDS must be numbers"
             ) from exc
+        requestion_confidence_threshold = _requestion_threshold(
+            os.getenv(
+                "JEV_REQUESTION_CONFIDENCE_THRESHOLD",
+                str(DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD),
+            ),
+            label="JEV_REQUESTION_CONFIDENCE_THRESHOLD",
+        )
         return cls(
             key,
             base_url=base_url,
@@ -152,6 +262,7 @@ class JevPredictor:
             capability_descriptions=capability_descriptions,
             max_retries=max_retries,
             retry_backoff_seconds=retry_backoff_seconds,
+            requestion_confidence_threshold=requestion_confidence_threshold,
         )
 
     def _questions(self) -> dict[str, dict[str, Any]]:
@@ -179,9 +290,46 @@ class JevPredictor:
             questions[name] = question
         return questions
 
-    def _post(self, payload: dict[str, Any]) -> Any:
+    def _print_event(
+        self,
+        event: str,
+        *,
+        round_number: int,
+        capabilities: Sequence[str],
+        payload: Any,
+    ) -> None:
+        if not self.print_io:
+            return
+        print(
+            json.dumps(
+                {
+                    "event": event,
+                    "round": round_number,
+                    "capabilities": list(capabilities),
+                    "payload": payload,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=sys.stderr,
+            flush=True,
+        )
+
+    def _post(
+        self,
+        payload: dict[str, Any],
+        *,
+        round_number: int,
+        capabilities: Sequence[str],
+    ) -> Any:
         url = f"{self.base_url}/v1/systemone"
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        self._print_event(
+            "jev_request",
+            round_number=round_number,
+            capabilities=capabilities,
+            payload=payload,
+        )
         last_status: int | None = None
         for attempt in range(self.max_retries + 1):
             try:
@@ -213,16 +361,54 @@ class JevPredictor:
                     details={"status_code": status},
                 )
             try:
-                return response.json()
+                response_payload = response.json()
             except (ValueError, TypeError) as exc:
                 raise PredictorError("Jev response was not valid JSON") from exc
+            self._print_event(
+                "jev_response",
+                round_number=round_number,
+                capabilities=capabilities,
+                payload=response_payload,
+            )
+            return response_payload
         raise PredictorError("Jev request could not be completed", retryable=True, details={"status_code": last_status})
 
-    def predict(self, task: str) -> RequirementPrediction:
-        if not isinstance(task, str) or not task.strip():
-            raise PredictorError("task must be a non-empty string")
-        questions = self._questions()
-        response = self._post({"state": task, "model": self.model, "questions": questions})
+    def _round_questions(
+        self,
+        base_questions: Mapping[str, Mapping[str, Any]],
+        capabilities: Sequence[str],
+        *,
+        round_number: int,
+    ) -> dict[str, dict[str, Any]]:
+        questions: dict[str, dict[str, Any]] = {}
+        prompts = self.requestion_prompts.get(round_number, {})
+        for capability in capabilities:
+            question = dict(base_questions[capability])
+            if round_number in REQUESTION_ROUNDS:
+                prompt = prompts.get(capability, "")
+                if prompt.strip():
+                    question["instructions"] = prompt
+            questions[capability] = question
+        return questions
+
+    def _ask_round(
+        self,
+        task: str,
+        base_questions: Mapping[str, Mapping[str, Any]],
+        capabilities: Sequence[str],
+        *,
+        round_number: int,
+    ) -> QuestionRound:
+        questions = self._round_questions(
+            base_questions,
+            capabilities,
+            round_number=round_number,
+        )
+        response = self._post(
+            {"state": task, "model": self.model, "questions": questions},
+            round_number=round_number,
+            capabilities=capabilities,
+        )
         if not isinstance(response, Mapping):
             raise PredictorError("Jev response must be an object")
         answers = response.get("answers")
@@ -233,26 +419,88 @@ class JevPredictor:
         if actual != expected:
             raise PredictorError(
                 "Jev answer set does not match requested capabilities",
-                details={"missing": sorted(expected - actual), "extra": sorted(actual - expected)},
+                details={
+                    "round": round_number,
+                    "missing": sorted(expected - actual),
+                    "extra": sorted(actual - expected),
+                },
             )
 
-        requirements: dict[str, float] = {}
-        confidences: list[float] = []
+        predictions: dict[str, CapabilityPrediction] = {}
         for capability, question in questions.items():
             answer = answers[capability]
             if not isinstance(answer, Mapping) or answer.get("type") != "score":
                 raise PredictorError(f"answer {capability!r} must be a score answer")
             criteria = question["criteria"]
-            raw_score = _finite_number(answer.get("score"), label=f"answers.{capability}.score")
+            raw_score = _finite_number(
+                answer.get("score"),
+                label=f"answers.{capability}.score",
+            )
             maximum = len(criteria) - 1
             if raw_score < 0 or raw_score > maximum:
                 raise PredictorError(
                     f"answers.{capability}.score is outside its score levels",
-                    details={"min": 0, "max": maximum},
+                    details={"round": round_number, "min": 0, "max": maximum},
                 )
-            confidence = _finite_number(answer.get("confidence"), label=f"answers.{capability}.confidence")
+            confidence = _finite_number(
+                answer.get("confidence"),
+                label=f"answers.{capability}.confidence",
+            )
             if not 0 <= confidence <= 1:
-                raise PredictorError(f"answers.{capability}.confidence must be between 0 and 1")
-            requirements[capability] = raw_score / maximum
-            confidences.append(confidence)
-        return RequirementPrediction(requirements=requirements, confidence=sum(confidences) / len(confidences))
+                raise PredictorError(
+                    f"answers.{capability}.confidence must be between 0 and 1"
+                )
+            predictions[capability] = CapabilityPrediction(
+                requirement=raw_score / maximum,
+                confidence=confidence,
+                round_number=round_number,
+            )
+        return QuestionRound(
+            number=round_number,
+            capabilities=tuple(capabilities),
+            predictions=predictions,
+        )
+
+    def predict(self, task: str) -> RequirementPrediction:
+        if not isinstance(task, str) or not task.strip():
+            raise PredictorError("task must be a non-empty string")
+        base_questions = self._questions()
+        pending = tuple(base_questions)
+        rounds: list[QuestionRound] = []
+
+        for round_number in (1, *REQUESTION_ROUNDS):
+            if not pending:
+                break
+            result = self._ask_round(
+                task,
+                base_questions,
+                pending,
+                round_number=round_number,
+            )
+            rounds.append(result)
+            if round_number == REQUESTION_ROUNDS[-1]:
+                break
+            pending = tuple(
+                capability
+                for capability in result.capabilities
+                if result.predictions[capability].confidence
+                < self.requestion_confidence_threshold
+            )
+
+        selected: dict[str, CapabilityPrediction] = {}
+        for result in rounds:
+            for capability, candidate in result.predictions.items():
+                current = selected.get(capability)
+                if current is None or candidate.confidence > current.confidence:
+                    selected[capability] = candidate
+
+        return RequirementPrediction(
+            requirements={
+                capability: selected[capability].requirement
+                for capability in base_questions
+            },
+            confidences={
+                capability: selected[capability].confidence
+                for capability in base_questions
+            },
+        )
