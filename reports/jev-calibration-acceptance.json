@@ -1,0 +1,148 @@
+{
+  "calibration_version": "router-relative-v1-2026-09-23",
+  "task": "编写 Python 函数，对整数列表去重并保持首次出现顺序；只输出代码，不附解释。",
+  "verification": {
+    "offline_build_and_registry_reload": "passed",
+    "original_raw_facts_preserved": "passed",
+    "piecewise_interpolation_and_clipping": "passed",
+    "duplicate_anchor_rejection": "passed",
+    "synthetic_three_round_memory_isolation": "passed",
+    "live_three_round_memory": [
+      {
+        "round": 1,
+        "capability": "coding",
+        "same_criteria": true,
+        "memory_ok": true
+      },
+      {
+        "round": 1,
+        "capability": "instruction_following",
+        "same_criteria": true,
+        "memory_ok": true
+      },
+      {
+        "round": 1,
+        "capability": "reasoning",
+        "same_criteria": true,
+        "memory_ok": true
+      },
+      {
+        "round": 1,
+        "capability": "tool_use",
+        "same_criteria": true,
+        "memory_ok": true
+      },
+      {
+        "round": 2,
+        "capability": "reasoning",
+        "same_criteria": true,
+        "memory_ok": true
+      },
+      {
+        "round": 3,
+        "capability": "reasoning",
+        "same_criteria": true,
+        "memory_ok": true
+      }
+    ]
+  },
+  "benchmark_coverage": {
+    "metadata": 64,
+    "profiles": 15,
+    "excluded": 49,
+    "reasoning": 13,
+    "coding": 13,
+    "tool_use": 12,
+    "instruction_following": 5,
+    "all_four": 3
+  },
+  "prediction": {
+    "calibration_version": "router-relative-v1-2026-09-23",
+    "rounds": [
+      {
+        "round": 1,
+        "scores": {
+          "coding": {
+            "requirement_0_10": 3.04,
+            "confidence": 0.68
+          },
+          "instruction_following": {
+            "requirement_0_10": 3.22,
+            "confidence": 0.73
+          },
+          "reasoning": {
+            "requirement_0_10": 2.6,
+            "confidence": 0.53
+          },
+          "tool_use": {
+            "requirement_0_10": 0.0,
+            "confidence": 1.0
+          }
+        }
+      },
+      {
+        "round": 2,
+        "scores": {
+          "reasoning": {
+            "requirement_0_10": 2.48,
+            "confidence": 0.49
+          }
+        }
+      },
+      {
+        "round": 3,
+        "scores": {
+          "reasoning": {
+            "requirement_0_10": 2.64,
+            "confidence": 0.54
+          }
+        }
+      }
+    ],
+    "selected": {
+      "coding": {
+        "round": 1,
+        "requirement_0_10": 3.04,
+        "confidence": 0.68
+      },
+      "instruction_following": {
+        "round": 1,
+        "requirement_0_10": 3.22,
+        "confidence": 0.73
+      },
+      "reasoning": {
+        "round": 3,
+        "requirement_0_10": 2.64,
+        "confidence": 0.54
+      },
+      "tool_use": {
+        "round": 1,
+        "requirement_0_10": 0.0,
+        "confidence": 1.0
+      }
+    }
+  },
+  "decision": {
+    "model": "deepseek-r1-0528",
+    "provider": "deepseek",
+    "tier": "balanced",
+    "requirements": {
+      "coding": 0.304,
+      "instruction_following": 0.322,
+      "reasoning": 0.264,
+      "tool_use": 0.0
+    },
+    "confidences": {
+      "coding": 0.68,
+      "instruction_following": 0.73,
+      "reasoning": 0.54,
+      "tool_use": 1.0
+    },
+    "shortfall": 0.0,
+    "success_probability": null,
+    "fallback": false,
+    "reason": "selected lowest-cost model meeting tier shortfall",
+    "error": null
+  },
+  "comparison_note": "One live acceptance task with the new prompts; no matched old-prompt baseline was run. Confidence improvement is not established."
+}

@@ -1,5 +1,6 @@
-# Public benchmark facts. `raw_value` preserves the published percentage;
-# `normalized_0_1` is the value consumed by capability aggregation.
+# Public benchmark facts: preserve raw_value and source protocol.
+# Frozen normalization anchors derive normalized_0_1 during Registry loading.
+# normalization: null means retained evidence excluded from current calibration.
 benchmarks:
   gpqa_diamond:
     display_name: GPQA Diamond
@@ -8,7 +9,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: gpqa-diamond
     protocol_id: openai_simple_evals_gpqa
     source_url: https://github.com/openai/simple-evals
@@ -20,7 +21,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: public-2500
     protocol_id: scale_hle_public_leaderboard
     source_url: https://labs.scale.com/leaderboard/humanitys_last_exam
@@ -32,7 +33,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: HumanEval-v1
     protocol_id: openai_simple_evals_humaneval
     source_url: https://github.com/openai/simple-evals
@@ -44,7 +45,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: release-window-required
     protocol_id: livecodebench_codegeneration
     source_url: https://github.com/LiveCodeBench/LiveCodeBench
@@ -56,7 +57,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: verified-500
     protocol_id: swe_bench_verified
     source_url: https://www.swebench.com/
@@ -68,7 +69,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: 80-main-338-subproblems
     protocol_id: scicode_main_problem
     source_url: https://github.com/scicode-bench/SciCode
@@ -80,7 +81,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: v1.0.1-or-newer
     protocol_id: tau2_domain_pass_k
     source_url: https://github.com/sierra-research/tau2-bench
@@ -92,7 +93,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: neurips-2024-12000
     protocol_id: mmlu_pro_cot_accuracy
     source_url: https://github.com/TIGER-AI-Lab/MMLU-Pro
@@ -104,7 +105,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: bbh-23-tasks
     protocol_id: bbh_cot_mean_accuracy
     source_url: https://github.com/suzgunmirac/BIG-Bench-Hard
@@ -116,7 +117,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: ARC-V1-Challenge
     protocol_id: ai2_arc_challenge_accuracy
     source_url: https://allenai.org/data/arc
@@ -128,7 +129,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: drop-public
     protocol_id: drop_token_f1
     source_url: https://github.com/allenai/allennlp-website/blob/master/drop.html
@@ -140,7 +141,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: gsm8k-1319-test
     protocol_id: gsm8k_exact_match
     source_url: https://github.com/openai/grade-school-math
@@ -152,7 +153,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: math-500
     protocol_id: openai_simple_evals_math
     source_url: https://github.com/openai/simple-evals
@@ -164,7 +165,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: sanitized-mbpp
     protocol_id: mbpp_sanitized_pass_at_1
     source_url: https://github.com/google-research/google-research/tree/master/mbpp
@@ -176,7 +177,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: v0.2-full-instruct
     protocol_id: bigcodebench_instruct_calibrated_pass_at_1
     source_url: https://github.com/bigcode-project/bigcodebench
@@ -188,7 +189,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: ds-1000-1000-problems
     protocol_id: ds1000_pass_at_1
     source_url: https://github.com/xlang-ai/DS-1000
@@ -200,7 +201,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: cruxeval-800
     protocol_id: cruxeval_io_pass_at_1_mean
     source_url: https://github.com/facebookresearch/cruxeval
@@ -212,7 +213,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: debugbench-4253
     protocol_id: debugbench_zero_shot_pass_rate
     source_url: https://github.com/thunlp/DebugBench
@@ -224,7 +225,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: bfcl-v4
     protocol_id: bfcl_v4_unweighted_overall_accuracy
     source_url: https://gorilla.cs.berkeley.edu/leaderboard
@@ -236,7 +237,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: toolbench-six-test-subsets
     protocol_id: toolbench_tooleval_pass_rate
     source_url: https://github.com/OpenBMB/ToolBench
@@ -248,7 +249,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: hybrid-2024-2025-60
     protocol_id: llmrouterbench_performance_cost_aime_hybrid_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -260,7 +261,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: english-test-121
     protocol_id: llmrouterbench_performance_cost_livemathbench_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -272,7 +273,43 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization:
+      method: piecewise_linear
+      version: router-relative-v1-2026-09-23
+      reference_date: '2026-09-23'
+      reference_count: 13
+      anchor_rule: raw_zero; P10->0.1, P25->0.3, P50->0.5, P75->0.7, P90->0.9; frozen
+        reference max->1
+      quantile_method: linear (n-1)*q; duplicate raw anchors omitted
+      reference_scores:
+        claude-sonnet-4: 58.1
+        deepseek-r1-0528: 80.09
+        deepseek-v3-0324: 66.64
+        deepseek-v3.1-terminus: 67.3
+        gemini-2.5-flash: 60.0
+        gemini-2.5-pro: 79.15
+        glm-4.6: 63.13
+        gpt-5: 86.45
+        gpt-5-chat: 62.18
+        intern-s1: 49.19
+        kimi-k2-0905: 67.3
+        qwen3-235b-a22b-2507: 64.17
+        qwen3-235b-a22b-thinking-2507: 78.39
+      anchors:
+      - raw: 0.0
+        score: 0.0
+      - raw: 58.48
+        score: 0.1
+      - raw: 62.18
+        score: 0.3
+      - raw: 66.64
+        score: 0.5
+      - raw: 78.39
+        score: 0.7
+      - raw: 79.902
+        score: 0.9
+      - raw: 86.45
+        score: 1.0
     dataset_version: llmrouterbench-test-1055
     protocol_id: llmrouterbench_performance_cost_livecodebench_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -284,7 +321,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: verified-500
     protocol_id: llmrouterbench_performance_cost_swe_verified_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -296,7 +333,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: gpqa-diamond-198
     protocol_id: llmrouterbench_performance_cost_gpqa_diamond_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -308,7 +345,43 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization:
+      method: piecewise_linear
+      version: router-relative-v1-2026-09-23
+      reference_date: '2026-09-23'
+      reference_count: 13
+      anchor_rule: raw_zero; P10->0.1, P25->0.3, P50->0.5, P75->0.7, P90->0.9; frozen
+        reference max->1
+      quantile_method: linear (n-1)*q; duplicate raw anchors omitted
+      reference_scores:
+        claude-sonnet-4: 4.82
+        deepseek-r1-0528: 15.99
+        deepseek-v3-0324: 3.61
+        deepseek-v3.1-terminus: 8.94
+        gemini-2.5-flash: 7.78
+        gemini-2.5-pro: 21.69
+        glm-4.6: 15.52
+        gpt-5: 26.32
+        gpt-5-chat: 5.7
+        intern-s1: 8.85
+        kimi-k2-0905: 6.12
+        qwen3-235b-a22b-2507: 9.22
+        qwen3-235b-a22b-thinking-2507: 7.78
+      anchors:
+      - raw: 0.0
+        score: 0.0
+      - raw: 4.996
+        score: 0.1
+      - raw: 6.12
+        score: 0.3
+      - raw: 8.85
+        score: 0.5
+      - raw: 15.52
+        score: 0.7
+      - raw: 20.55
+        score: 0.9
+      - raw: 26.32
+        score: 1.0
     dataset_version: llmrouterbench-test-2158
     protocol_id: llmrouterbench_performance_cost_hle_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -320,7 +393,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: test-3000
     protocol_id: llmrouterbench_performance_cost_mmlu_pro_3000_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -332,7 +405,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-test-4326
     protocol_id: llmrouterbench_performance_cost_simpleqa_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -344,7 +417,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: arena-hard-v2-750
     protocol_id: llmrouterbench_performance_cost_arenahard_v2_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -356,7 +429,42 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization:
+      method: piecewise_linear
+      version: router-relative-v1-2026-09-23
+      reference_date: '2026-09-23'
+      reference_count: 12
+      anchor_rule: raw_zero; P10->0.1, P25->0.3, P50->0.5, P75->0.7, P90->0.9; frozen
+        reference max->1
+      quantile_method: linear (n-1)*q; duplicate raw anchors omitted
+      reference_scores:
+        claude-sonnet-4: 49.28
+        deepseek-r1-0528: 37.77
+        deepseek-v3-0324: 7.19
+        deepseek-v3.1-terminus: 46.76
+        gemini-2.5-flash: 32.37
+        gemini-2.5-pro: 43.17
+        glm-4.6: 53.96
+        gpt-5: 70.14
+        intern-s1: 32.73
+        kimi-k2-0905: 48.92
+        qwen3-235b-a22b-2507: 40.29
+        qwen3-235b-a22b-thinking-2507: 53.6
+      anchors:
+      - raw: 0.0
+        score: 0.0
+      - raw: 32.406
+        score: 0.1
+      - raw: 36.51
+        score: 0.3
+      - raw: 44.965
+        score: 0.5
+      - raw: 50.36
+        score: 0.7
+      - raw: 53.924
+        score: 0.9
+      - raw: 70.14
+        score: 1.0
     dataset_version: llmrouterbench-test-278
     protocol_id: llmrouterbench_performance_cost_tau2_c77cb05
     source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/assets/Table9.png
@@ -368,7 +476,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: hybrid-2024-2025-60
     protocol_id: llmrouterbench_performance_aime_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -380,7 +488,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: math-500-500
     protocol_id: llmrouterbench_performance_math500_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -392,7 +500,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-mathbench-150
     protocol_id: llmrouterbench_performance_mathbench_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -404,7 +512,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-mbpp-974
     protocol_id: llmrouterbench_performance_mbpp_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -416,7 +524,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: humaneval-164
     protocol_id: llmrouterbench_performance_humaneval_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -428,7 +536,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-test-1055
     protocol_id: llmrouterbench_performance_livecodebench_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -440,7 +548,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-korbench-1250
     protocol_id: llmrouterbench_performance_korbench_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -452,7 +560,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-knights-and-knaves-700
     protocol_id: llmrouterbench_performance_knights_knaves_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -464,7 +572,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-bbh-1080
     protocol_id: llmrouterbench_performance_bbh_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -476,7 +584,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: test-1000
     protocol_id: llmrouterbench_performance_mmlu_pro_1000_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -488,7 +596,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: gpqa-diamond-198
     protocol_id: llmrouterbench_performance_gpqa_diamond_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -500,7 +608,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-finqa-1147
     protocol_id: llmrouterbench_performance_finqa_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -512,7 +620,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-medqa-1273
     protocol_id: llmrouterbench_performance_medqa_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -524,7 +632,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-emorynlp-697
     protocol_id: llmrouterbench_performance_emorynlp_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -536,7 +644,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: raw_value / 100
+    normalization: null
     dataset_version: llmrouterbench-meld-1232
     protocol_id: llmrouterbench_performance_meld_table7_acl2026
     source_url: https://aclanthology.org/2026.findings-acl.1881.pdf#page=16
@@ -548,7 +656,7 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: min(raw_value / 47, 1); 47 is the pinned GPT-5.6 Sol max-effort cutoff anchor
+    normalization: null
     dataset_version: v4.3.2-2026-09-22
     protocol_id: artificial_analysis_intelligence_index_v4_3_2
     source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
@@ -560,34 +668,88 @@ benchmarks:
     direction: higher_is_better
     raw_min: 0
     raw_max: 100
-    normalization: min(raw_value / 47, 1); 47 is the pinned GPT-5.6 Sol max-effort cutoff anchor
+    normalization: null
     dataset_version: v4.3-series-estimate-2026-09-22
     protocol_id: artificial_analysis_intelligence_index_v4_3_series_estimate
     source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
     limitations: Source-labelled estimate based on a v4.3-series ten-evaluation composite; independent evaluation was pending. Kept separate from measured v4.3.2 observations and must not be treated as an independently reproduced result. Capability normalization uses the same pinned GPT-5.6 Sol cutoff anchor as measured observations. Exact patch version is recorded in observation notes when available.
 
+  ifbench_paper_v3_single_turn:
+    display_name: IFBench (author paper v3, single-turn)
+    capability_hint: instruction_following
+    metric: prompt_level_loose_accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization:
+      method: piecewise_linear
+      version: router-relative-v1-2026-09-23
+      reference_date: '2026-09-23'
+      reference_count: 6
+      anchor_rule: 'small cohort (<10): raw_zero->0, frozen reference max->1; no estimated percentiles'
+      quantile_method: linear (n-1)*q; duplicate raw anchors omitted
+      reference_scores:
+        o3: 69.3
+        claude-sonnet-4: 42.3
+        deepseek-r1-0528: 38.0
+        gemini-2.5-pro: 52.3
+        qwen3-8b: 35.0
+        qwen3-32b: 37.3
+      anchors:
+      - raw: 0.0
+        score: 0.0
+      - raw: 69.3
+        score: 1.0
+    dataset_version: ifbench-300-paper-v3
+    protocol_id: ifbench_author_paper_v3_figure1_single_turn_loose
+    source_url: https://arxiv.org/pdf/2507.02833v3#page=3
+    limitations: Figure 1 off-the-shelf models only, not IF-RLVR variants. Temperature generally 0; DeepSeek R1 uses
+      0.6/top_p 0.95 and o3 uses 1; reasoning token limits differ. Vendor snapshot identifiers and effort are not
+      fully disclosed; matches use the paper model labels and must not be transferred to newer releases. Precise constraints,
+      not a full instruction-hierarchy or long-context evaluation.
+  gpqa_diamond_vendor_reported:
+    display_name: GPQA Diamond
+    capability_hint: reasoning
+    metric: accuracy_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: null
+    dataset_version: gpqa-diamond
+    protocol_id: vendor_reported_gpqa
+    source_url: https://github.com/openai/simple-evals
+    limitations: Vendor-reported protocol in the simple-evals table, separated from OpenAI reruns; only one observation,
+      not calibrated.
+  humaneval_vendor_reported:
+    display_name: HumanEval
+    capability_hint: coding
+    metric: pass_at_1_percent
+    direction: higher_is_better
+    raw_min: 0
+    raw_max: 100
+    normalization: null
+    dataset_version: HumanEval-v1
+    protocol_id: vendor_reported_humaneval
+    source_url: https://github.com/openai/simple-evals
+    limitations: Vendor-reported protocol in the simple-evals table, separated from OpenAI reruns; only one observation,
+      not calibrated.
 observations:
   gpt-4.1-2025-04-14:
     gpqa_diamond:
       raw_value: 66.3
-      normalized_0_1: 0.663
       eval_date: 2025-04-14
     humaneval:
       raw_value: 94.5
-      normalized_0_1: 0.945
       eval_date: 2025-04-14
   gpt-4o-2024-11-20:
     gpqa_diamond:
       raw_value: 46.0
-      normalized_0_1: 0.460
       eval_date: 2024-11-20
     humaneval:
       raw_value: 90.2
-      normalized_0_1: 0.902
       eval_date: 2024-11-20
     swe_bench_verified:
       raw_value: 33.2
-      normalized_0_1: 0.332
       protocol_id: openai_swe_verified_best_scaffold_2024
       eval_date: 2024-08-13
       source_url: https://openai.com/index/introducing-swe-bench-verified/
@@ -595,26 +757,24 @@ observations:
   o3:
     gpqa_diamond:
       raw_value: 82.8
-      normalized_0_1: 0.828
     humaneval:
       raw_value: 87.4
-      normalized_0_1: 0.874
+    ifbench_paper_v3_single_turn:
+      raw_value: 69.3
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.
   o3-mini:
     gpqa_diamond:
       raw_value: 74.9
-      normalized_0_1: 0.749
     humaneval:
       raw_value: 96.3
-      normalized_0_1: 0.963
   claude-3-5-sonnet:
-    gpqa_diamond:
+    gpqa_diamond_vendor_reported:
       raw_value: 59.4
-      normalized_0_1: 0.594
       protocol_id: vendor_reported_gpqa
       notes: Reported value in the simple-evals table, not an OpenAI rerun.
-    humaneval:
+    humaneval_vendor_reported:
       raw_value: 92.0
-      normalized_0_1: 0.920
       protocol_id: vendor_reported_humaneval
       notes: Reported value in the simple-evals table, not an OpenAI rerun.
   claude-sonnet-4:
@@ -628,6 +788,10 @@ observations:
     llmrb_simpleqa: {raw_value: 15.14, normalized_0_1: 0.1514}
     llmrb_arenahard_v2: {raw_value: 54.67, normalized_0_1: 0.5467}
     llmrb_tau2_bench: {raw_value: 49.28, normalized_0_1: 0.4928}
+    ifbench_paper_v3_single_turn:
+      raw_value: 42.3
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.
   deepseek-r1-0528:
     llmrb_aime_2024_2025: {raw_value: 85.00, normalized_0_1: 0.8500}
     llmrb_livemathbench: {raw_value: 77.69, normalized_0_1: 0.7769}
@@ -639,6 +803,10 @@ observations:
     llmrb_simpleqa: {raw_value: 27.12, normalized_0_1: 0.2712}
     llmrb_arenahard_v2: {raw_value: 63.53, normalized_0_1: 0.6353}
     llmrb_tau2_bench: {raw_value: 37.77, normalized_0_1: 0.3777}
+    ifbench_paper_v3_single_turn:
+      raw_value: 38.0
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.
   deepseek-v3-0324:
     llmrb_aime_2024_2025: {raw_value: 43.33, normalized_0_1: 0.4333}
     llmrb_livemathbench: {raw_value: 61.98, normalized_0_1: 0.6198}
@@ -683,6 +851,10 @@ observations:
     llmrb_simpleqa: {raw_value: 53.77, normalized_0_1: 0.5377}
     llmrb_arenahard_v2: {raw_value: 77.00, normalized_0_1: 0.7700}
     llmrb_tau2_bench: {raw_value: 43.17, normalized_0_1: 0.4317}
+    ifbench_paper_v3_single_turn:
+      raw_value: 52.3
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.
   glm-4.6:
     llmrb_aime_2024_2025: {raw_value: 81.67, normalized_0_1: 0.8167}
     llmrb_livemathbench: {raw_value: 63.64, normalized_0_1: 0.6364}
@@ -999,6 +1171,10 @@ observations:
     llmrb_perf_medqa: {raw_value: 79.18, normalized_0_1: 0.7918}
     llmrb_perf_emorynlp: {raw_value: 38.74, normalized_0_1: 0.3874}
     llmrb_perf_meld: {raw_value: 54.22, normalized_0_1: 0.5422}
+    ifbench_paper_v3_single_turn:
+      raw_value: 35.0
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.
   cogito-v1-preview-llama-8b:
     llmrb_perf_aime_2024_2025: {raw_value: 1.67, normalized_0_1: 0.0167}
     llmrb_perf_math_500: {raw_value: 51.20, normalized_0_1: 0.5120}
@@ -1082,180 +1258,159 @@ observations:
   gpt-5.4:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 39
-      normalized_0_1: 0.8298
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gpt-5-4
       notes: Evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
   gpt-5.5:
     aa_intelligence_index_v4_3_2:
       raw_value: 38
-      normalized_0_1: 0.8085
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gpt-5-5
       notes: Evaluated at xhigh reasoning effort; source marks the model deprecated after GPT-5.6 Sol.
   gpt-5.6-sol:
     aa_intelligence_index_v4_3_2:
       raw_value: 47
-      normalized_0_1: 1.0
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gpt-5-6-sol
       notes: Evaluated at max reasoning effort.
   gpt-5.6-terra:
     aa_intelligence_index_v4_3_2:
       raw_value: 42
-      normalized_0_1: 0.8936
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
       notes: Evaluated at max reasoning effort.
   gpt-5.6-luna:
     aa_intelligence_index_v4_3_2:
       raw_value: 37
-      normalized_0_1: 0.7872
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
       notes: Evaluated at max reasoning effort.
   glm-5:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 28
-      normalized_0_1: 0.5957
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/glm-5/
       notes: Reasoning mode. Artificial Analysis explicitly labels this score as an estimate pending independent evaluation.
   gpt-5.1:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 25
-      normalized_0_1: 0.5319
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gpt-5-1
       notes: Evaluated at high reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
   gpt-5.2:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 30
-      normalized_0_1: 0.6383
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gpt-5-2
       notes: Evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
   gpt-5.3-codex:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 33
-      normalized_0_1: 0.7021
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/comparisons/gpt-5-3-codex-vs-gpt-5-2
       notes: Coding-specialized general text-output model evaluated at xhigh reasoning effort on v4.3.2; source labels the score as an estimate pending independent evaluation.
   glm-5.3:
     aa_intelligence_index_v4_3_2:
       raw_value: 45
-      normalized_0_1: 0.9574
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/glm-5-3
       notes: Evaluated at max reasoning effort.
   qwen3.8-max-0902:
     aa_intelligence_index_v4_3_2:
       raw_value: 45
-      normalized_0_1: 0.9574
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/qwen3-8-max
       notes: Pinned 0902 release.
   deepseek-v4.1-flash:
     aa_intelligence_index_v4_3_2:
       raw_value: 39
-      normalized_0_1: 0.8298
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/deepseek-v4-1-flash
       notes: Evaluated at max reasoning effort.
   kimi-k3:
     aa_intelligence_index_v4_3_2:
       raw_value: 44
-      normalized_0_1: 0.9362
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/kimi-k3
       notes: Evaluated at max reasoning effort.
   mimo-v2.6-pro:
     aa_intelligence_index_v4_3_2:
       raw_value: 46
-      normalized_0_1: 0.9787
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
       notes: General-purpose text model; no dedicated media model data is included.
   step-5-preview:
     aa_intelligence_index_v4_3_2:
       raw_value: 44
-      normalized_0_1: 0.9362
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
       notes: Preview model; score and availability may change before a stable release.
   minimax-m3:
     aa_intelligence_index_v4_3_2:
       raw_value: 29
-      normalized_0_1: 0.6170
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
   hy3:
     aa_intelligence_index_v4_3_2:
       raw_value: 25
-      normalized_0_1: 0.5319
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
   claude-sonnet-4.6:
     aa_intelligence_index_v4_3_2:
       raw_value: 30
-      normalized_0_1: 0.6383
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/releases/claude-sonnet-4-6
       notes: Evaluated with adaptive reasoning at max effort.
   gemini-3.1-pro-preview:
     aa_intelligence_index_v4_3_2:
       raw_value: 30
-      normalized_0_1: 0.6383
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/gemini-3-1-pro-preview
       notes: Preview model evaluated as a general-purpose reasoning model; only text-side composite results are used here.
   glm-5.1:
     aa_intelligence_index_v4_3_2:
       raw_value: 26
-      normalized_0_1: 0.5532
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/glm-5-1/
       notes: Reasoning-mode text model; deprecated after GLM-5.2 but retained as a lineage checkpoint.
   glm-5.2:
     aa_intelligence_index_v4_3_2:
       raw_value: 34
-      normalized_0_1: 0.7234
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/glm-5-2
       notes: Evaluated at max reasoning effort; deprecated after GLM-5.3 but retained as a lineage checkpoint.
   deepseek-v3.2:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 21
-      normalized_0_1: 0.4468
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/deepseek-v3-2-reasoning
       notes: Reasoning mode; source labels the score as an estimate pending independent evaluation.
   qwen3.5-397b-a17b:
     aa_intelligence_index_v4_3_2:
       raw_value: 18
-      normalized_0_1: 0.3830
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/qwen3-5-397b-a17b
       notes: Evaluated in reasoning mode.
   kimi-k2.5:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 23
-      normalized_0_1: 0.4894
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/kimi-k2-5
       notes: Reasoning mode; source labels the score as an estimate pending independent evaluation. Only the text-side composite score is used.
   minimax-m2.5:
     aa_intelligence_index_v4_3_series_estimate:
       raw_value: 23
-      normalized_0_1: 0.4894
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/minimax-m2-5
       notes: Text-only reasoning model; source labels the score as an estimate pending independent evaluation.
   deepseek-v4-pro-0813:
     aa_intelligence_index_v4_3_2:
       raw_value: 36
-      normalized_0_1: 0.7660
       eval_date: 2026-09-22
       source_url: https://artificialanalysis.ai/models/deepseek-v4-pro
       notes: DeepSeek V4 Pro 0813 evaluated at max reasoning effort. Pinned to the August release because the unversioned deepseek-v4-pro API name is temporarily routed to V4.1 Flash until V4.1 Pro launches.
+  qwen3-32b:
+    ifbench_paper_v3_single_turn:
+      raw_value: 37.3
+      notes: Author paper v3 Figure 1, single-turn, off-the-shelf. Model-family label only where a dated API snapshot
+        is not disclosed; retrieved 2026-09-23.

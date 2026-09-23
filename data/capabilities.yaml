@@ -1,54 +1,12 @@
-# Capability definitions are configuration, not benchmark facts.
+# One benchmark per dimension; the first three share a pinned model cohort.
+# All inactive facts and model metadata remain available for later calibration.
+calibration_version: router-relative-v1-2026-09-23
 capabilities:
   reasoning:
-    benchmarks:
-      - gpqa_diamond
-      - humanitys_last_exam
-      - mmlu_pro
-      - big_bench_hard
-      - arc_challenge
-      - drop
-      - gsm8k
-      - math_500
-      - llmrb_aime_2024_2025
-      - llmrb_livemathbench
-      - llmrb_gpqa_diamond
-      - llmrb_hle
-      - llmrb_mmlu_pro_3000
-      - llmrb_simpleqa
-      - llmrb_perf_aime_2024_2025
-      - llmrb_perf_math_500
-      - llmrb_perf_mathbench
-      - llmrb_perf_korbench
-      - llmrb_perf_knights_and_knaves
-      - llmrb_perf_bbh
-      - llmrb_perf_mmlu_pro_1000
-      - llmrb_perf_gpqa_diamond
-      - llmrb_perf_finqa
-      - llmrb_perf_medqa
-      - aa_intelligence_index_v4_3_2
-      - aa_intelligence_index_v4_3_series_estimate
+    benchmarks: [llmrb_hle]
   coding:
-    benchmarks:
-      - humaneval
-      - mbpp
-      - livecodebench
-      - scicode
-      - bigcodebench
-      - ds_1000
-      - cruxeval
-      - llmrb_livecodebench
-      - llmrb_perf_mbpp
-      - llmrb_perf_humaneval
-      - llmrb_perf_livecodebench
-  debugging:
-    benchmarks:
-      - swe_bench_verified
-      - debugbench
-      - llmrb_swe_bench_verified
+    benchmarks: [llmrb_livecodebench]
   tool_use:
-    benchmarks:
-      - tau2_bench
-      - bfcl
-      - toolbench
-      - llmrb_tau2_bench
+    benchmarks: [llmrb_tau2_bench]
+  instruction_following:
+    benchmarks: [ifbench_paper_v3_single_turn]

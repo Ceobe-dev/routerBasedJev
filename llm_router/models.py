@@ -64,6 +64,7 @@ class ModelProfile(FrozenModel):
 
     model_id: str
     provider: str
+    calibration_version: str | None = None
     capabilities: dict[str, Score]
     capability_benchmark_counts: dict[str, int] = Field(default_factory=dict)
     price: Price = Field(default_factory=Price)

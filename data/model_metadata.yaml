@@ -1,0 +1,578 @@
+# Model metadata is preserved even when benchmark evidence is insufficient.
+models:
+  claude-3-5-sonnet:
+    provider: anthropic
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://www.anthropic.com/news/claude-3-5-sonnet
+    latency_p50_seconds: null
+    context_length: 200000
+  claude-sonnet-4:
+    provider: anthropic
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  claude-sonnet-4.6:
+    provider: anthropic
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: 0.3
+      source_url: https://artificialanalysis.ai/models/releases/claude-sonnet-4-6
+    latency_p50_seconds: null
+    context_length: 1000000
+  cogito-v1-preview-llama-8b:
+    provider: deepcogito
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deep-hermes-3-llama-3-8b-preview:
+    provider: nous-research
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-0528:
+    provider: deepseek
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.15
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-0528-qwen3-8b:
+    provider: deepseek
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-r1-distill-qwen-7b:
+    provider: deepseek
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3-0324:
+    provider: deepseek
+    price:
+      input_per_million: 0.25
+      output_per_million: 0.88
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3.1-terminus:
+    provider: deepseek
+    price:
+      input_per_million: 0.27
+      output_per_million: 1.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  deepseek-v3.2:
+    provider: deepseek
+    price:
+      input_per_million: 0.28
+      output_per_million: 0.42
+      cached_input_per_million: 0.014
+      source_url: https://artificialanalysis.ai/models/deepseek-v3-2-reasoning
+    latency_p50_seconds: null
+    context_length: 128000
+  deepseek-v4-pro-0813:
+    provider: deepseek
+    price:
+      input_per_million: 1.32
+      output_per_million: 3.96
+      cached_input_per_million: 0.0396
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-pro
+    latency_p50_seconds: null
+    context_length: 1000000
+  deepseek-v4.1-flash:
+    provider: deepseek
+    price:
+      input_per_million: 0.3
+      output_per_million: 1.2
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/deepseek-v4-1-flash
+    latency_p50_seconds: null
+    context_length: 1000000
+  fin-r1:
+    provider: sufe-aiflm-lab
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  gemini-2.5-flash:
+    provider: google
+    price:
+      input_per_million: 0.3
+      output_per_million: 2.5
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gemini-2.5-pro:
+    provider: google
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gemini-3.1-pro-preview:
+    provider: google
+    price:
+      input_per_million: 2.0
+      output_per_million: 12.0
+      cached_input_per_million: 0.2
+      source_url: https://artificialanalysis.ai/models/gemini-3-1-pro-preview
+    latency_p50_seconds: null
+    context_length: 1000000
+  gemma-2-9b-it:
+    provider: google
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  glm-4-9b-chat:
+    provider: z-ai
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  glm-4.6:
+    provider: z-ai
+    price:
+      input_per_million: 0.6
+      output_per_million: 2.2
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  glm-5:
+    provider: z-ai
+    price:
+      input_per_million: 1.0
+      output_per_million: 3.2
+      cached_input_per_million: 0.2
+      source_url: https://artificialanalysis.ai/models/glm-5/
+    latency_p50_seconds: null
+    context_length: 200000
+  glm-5.1:
+    provider: z-ai
+    price:
+      input_per_million: 1.2
+      output_per_million: 4.4
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/glm-5-1/
+    latency_p50_seconds: null
+    context_length: 200000
+  glm-5.2:
+    provider: z-ai
+    price:
+      input_per_million: 1.4
+      output_per_million: 4.4
+      cached_input_per_million: 0.26
+      source_url: https://artificialanalysis.ai/models/glm-5-2
+    latency_p50_seconds: null
+    context_length: 1000000
+  glm-5.3:
+    provider: z-ai
+    price:
+      input_per_million: 1.4
+      output_per_million: 4.4
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/glm-5-3
+    latency_p50_seconds: null
+    context_length: 1000000
+  glm-z1-9b-0414:
+    provider: z-ai
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  gpt-4.1-2025-04-14:
+    provider: openai
+    price:
+      input_per_million: 2.0
+      output_per_million: 8.0
+      cached_input_per_million: 0.5
+      source_url: https://developers.openai.com/api/docs/models/gpt-4.1
+    latency_p50_seconds: null
+    context_length: 1047576
+  gpt-4o-2024-11-20:
+    provider: openai
+    price:
+      input_per_million: 2.5
+      output_per_million: 10.0
+      cached_input_per_million: 1.25
+      source_url: https://developers.openai.com/api/docs/models/gpt-4o
+    latency_p50_seconds: null
+    context_length: 128000
+  gpt-5:
+    provider: openai
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gpt-5-chat:
+    provider: openai
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  gpt-5.1:
+    provider: openai
+    price:
+      input_per_million: 1.25
+      output_per_million: 10.0
+      cached_input_per_million: 0.125
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.1
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.2:
+    provider: openai
+    price:
+      input_per_million: 1.75
+      output_per_million: 14.0
+      cached_input_per_million: 0.175
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.2
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.3-codex:
+    provider: openai
+    price:
+      input_per_million: 1.75
+      output_per_million: 14.0
+      cached_input_per_million: 0.175
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.3-codex
+    latency_p50_seconds: null
+    context_length: 400000
+  gpt-5.4:
+    provider: openai
+    price:
+      input_per_million: 2.5
+      output_per_million: 15.0
+      cached_input_per_million: 0.25
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.4
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.5:
+    provider: openai
+    price:
+      input_per_million: 5.0
+      output_per_million: 30.0
+      cached_input_per_million: 0.5
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.5
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-luna:
+    provider: openai
+    price:
+      input_per_million: 0.2
+      output_per_million: 1.2
+      cached_input_per_million: 0.02
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-luna
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-sol:
+    provider: openai
+    price:
+      input_per_million: 4.0
+      output_per_million: 20.0
+      cached_input_per_million: 0.4
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-sol
+    latency_p50_seconds: null
+    context_length: 1050000
+  gpt-5.6-terra:
+    provider: openai
+    price:
+      input_per_million: 2.0
+      output_per_million: 12.0
+      cached_input_per_million: 0.2
+      source_url: https://developers.openai.com/api/docs/models/gpt-5.6-terra
+    latency_p50_seconds: null
+    context_length: 1050000
+  granite-3.3-8b-instruct:
+    provider: ibm
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  hy3:
+    provider: tencent
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 256000
+  intern-s1:
+    provider: internlm
+    price:
+      input_per_million: 0.18
+      output_per_million: 0.54
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  intern-s1-mini:
+    provider: internlm
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  internlm3-8b-instruct:
+    provider: internlm
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  kimi-k2-0905:
+    provider: moonshot
+    price:
+      input_per_million: 0.5
+      output_per_million: 2.0
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  kimi-k2.5:
+    provider: moonshot
+    price:
+      input_per_million: 0.6
+      output_per_million: 2.75
+      cached_input_per_million: 0.35
+      source_url: https://artificialanalysis.ai/models/kimi-k2-5
+    latency_p50_seconds: null
+    context_length: 256000
+  kimi-k3:
+    provider: moonshot
+    price:
+      input_per_million: 3.0
+      output_per_million: 15.0
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/kimi-k3
+    latency_p50_seconds: null
+    context_length: 1050000
+  llama-3.1-8b-instruct:
+    provider: meta
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  llama-3.1-8b-ultramedical:
+    provider: meta
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  llama-3.1-nemotron-nano-8b-v1:
+    provider: nvidia
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  mimo-7b-rl-0530:
+    provider: xiaomi
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  mimo-v2.6-pro:
+    provider: xiaomi
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000
+  minicpm4.1-8b:
+    provider: openbmb
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  minimax-m2.5:
+    provider: minimax
+    price:
+      input_per_million: 0.3
+      output_per_million: 1.2
+      cached_input_per_million: 0.03
+      source_url: https://artificialanalysis.ai/models/minimax-m2-5
+    latency_p50_seconds: null
+    context_length: 205000
+  minimax-m3:
+    provider: minimax
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000
+  nvidia-nemotron-nano-9b-v2:
+    provider: nvidia
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  o3:
+    provider: openai
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: 200000
+  o3-mini:
+    provider: openai
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: 200000
+  openthinker3-7b:
+    provider: open-thoughts
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  qwen2.5-coder-7b-instruct:
+    provider: alibaba
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  qwen3-235b-a22b-2507:
+    provider: alibaba
+    price:
+      input_per_million: 0.09
+      output_per_million: 0.6
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  qwen3-235b-a22b-thinking-2507:
+    provider: alibaba
+    price:
+      input_per_million: 0.3
+      output_per_million: 2.9
+      cached_input_per_million: null
+      source_url: https://github.com/ynulihao/LLMRouterBench/blob/c77cb0506949d8f959e97967d2fefca0e8ff1b05/README.md#model-pools
+    latency_p50_seconds: null
+    context_length: null
+  qwen3-8b:
+    provider: alibaba
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: null
+    latency_p50_seconds: null
+    context_length: null
+  qwen3.5-397b-a17b:
+    provider: alibaba
+    price:
+      input_per_million: 0.6
+      output_per_million: 3.6
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/qwen3-5-397b-a17b
+    latency_p50_seconds: null
+    context_length: 262000
+  qwen3.8-max-0902:
+    provider: alibaba
+    price:
+      input_per_million: 2.0
+      output_per_million: 6.0
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/models/qwen3-8-max
+    latency_p50_seconds: null
+    context_length: 984000
+  step-5-preview:
+    provider: stepfun
+    price:
+      input_per_million: null
+      output_per_million: null
+      cached_input_per_million: null
+      source_url: https://artificialanalysis.ai/leaderboards/models?deprecation=all
+    latency_p50_seconds: null
+    context_length: 1000000

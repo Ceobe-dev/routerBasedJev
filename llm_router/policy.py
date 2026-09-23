@@ -191,7 +191,8 @@ class ShortfallPolicy:
             provider=getattr(chosen, "provider", None),
             tier=tier,
             shortfall=shortfall,
-            success_probability=max(0.0, min(1.0, 1.0 - shortfall)),
+            # Relative benchmark positions do not estimate task success rates.
+            success_probability=None,
             fallback=fallback,
             reason=reason,
         )

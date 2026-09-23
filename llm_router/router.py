@@ -10,7 +10,7 @@ from pydantic import ValidationError
 from .errors import ConfigurationError, RegistryError, RouterError
 from .models import RequirementPrediction, RouteDecision, Tier
 from .policy import RoutingPolicy, ShortfallPolicy
-from .predictor import DEFAULT_CAPABILITIES, JevPredictor, RequirementPredictor
+from .predictor import JevPredictor, RequirementPredictor
 from .registry import ModelRegistry
 
 
@@ -33,13 +33,12 @@ class Router:
             )
             if not capability_names:
                 raise ConfigurationError("registry has no available capabilities")
-            descriptions = {
-                name: DEFAULT_CAPABILITIES.get(
-                    name, f"How much {name} ability does this task require?"
-                )
-                for name in capability_names
-            }
+            # None selects the configured rubric, including its first-round prompt.
+            descriptions = {name: None for name in capability_names}
             predictor = JevPredictor.from_env(capability_descriptions=descriptions)
+            if any(model.calibration_version != predictor.calibration_version for model in registry.models):
+                predictor.close()
+                raise ConfigurationError("model profiles and Jev prompts have different calibration versions; rebuild the registry")
         if not isinstance(predictor, RequirementPredictor):
             raise ConfigurationError("predictor must implement RequirementPredictor")
         if policy is None:

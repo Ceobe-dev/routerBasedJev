@@ -20,9 +20,9 @@ from typing import Any, Protocol, runtime_checkable
 import httpx
 from dotenv import load_dotenv
 
-from .errors import ConfigurationError, PredictorError, RouterError
+from .errors import ConfigurationError, PredictorError
 from .models import RequirementPrediction
-from .registry import load_yaml
+from .registry import load_jev_prompt_config
 
 
 @runtime_checkable
@@ -36,12 +36,18 @@ class RequirementPredictor(Protocol):
 DEFAULT_CAPABILITIES: dict[str, str] = {
     "reasoning": "How much reasoning ability does this task require?",
     "coding": "How much software coding ability does this task require?",
-    "debugging": "How much debugging ability does this task require?",
     "tool_use": "How much tool-use ability does this task require?",
+    "instruction_following": "How much precise instruction-following ability does this task require?",
 }
 
 DEFAULT_PRINT_JEV_IO = True
-DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD = 0.6
+DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD = 0.5
+DEFAULT_MEMORY_INSTRUCTION_TEMPLATE = (
+    "上一轮该能力问题的 Jev 回答记忆：\n"
+    "{previous_answer}\n\n"
+    "上述记忆仅供复核，不是事实或目标答案；允许修正，不追求一致或更高置信度。\n"
+    "请依据原始任务和相同评分标准重新回答本轮问题：\n"
+)
 DEFAULT_REQUESTION_PROMPT_PATH = (
     Path(__file__).resolve().parent.parent / "data" / "jev_requestion_prompt.yaml"
 )
@@ -64,6 +70,7 @@ class QuestionRound:
     number: int
     capabilities: tuple[str, ...]
     predictions: dict[str, CapabilityPrediction]
+    answers: dict[str, dict[str, Any]]
 
 
 def _finite_number(value: Any, *, label: str) -> float:
@@ -121,16 +128,6 @@ def _normalize_requestion_prompts(
     return normalized
 
 
-def _load_requestion_prompts(path: str | Path) -> dict[int, dict[str, str]]:
-    try:
-        document = load_yaml(path)
-    except RouterError as exc:
-        raise ConfigurationError(f"unable to load Jev re-question prompts: {path}") from exc
-    if not isinstance(document, Mapping):
-        raise ConfigurationError("Jev re-question prompt YAML must be a mapping")
-    return _normalize_requestion_prompts(document.get("rounds"))
-
-
 class JevPredictor:
     """Call TypeSafe's Jev ``systemone`` endpoint and normalize score answers."""
 
@@ -148,6 +145,7 @@ class JevPredictor:
         retry_backoff_seconds: float = 0.0,
         requestion_confidence_threshold: float = DEFAULT_REQUESTION_CONFIDENCE_THRESHOLD,
         requestion_prompts: Mapping[int | str, Any] | None = None,
+        memory_instruction_template: str = DEFAULT_MEMORY_INSTRUCTION_TEMPLATE,
         print_io: bool = DEFAULT_PRINT_JEV_IO,
     ) -> None:
         if not isinstance(api_key, str) or not api_key.strip():
@@ -179,7 +177,19 @@ class JevPredictor:
 
         if capability_descriptions is not None and capabilities is not None:
             raise ConfigurationError("capability_descriptions and capabilities are mutually exclusive")
-        descriptions = dict(capability_descriptions if capability_descriptions is not None else capabilities or DEFAULT_CAPABILITIES)
+        prompt_config = load_jev_prompt_config(DEFAULT_REQUESTION_PROMPT_PATH)
+        self.calibration_version = prompt_config["version"]
+        self._default_questions = prompt_config["questions"]
+        descriptions = dict(
+            capability_descriptions if capability_descriptions is not None
+            else capabilities if capabilities is not None
+            else self._default_questions
+        )
+        for name, description in list(descriptions.items()):
+            if description is None:
+                if name not in self._default_questions:
+                    raise ConfigurationError(f"capability {name!r} needs an explicit question and criteria")
+                descriptions[name] = self._default_questions[name]
         if not descriptions or any(not isinstance(k, str) or not k.strip() for k in descriptions):
             raise ConfigurationError("capability_descriptions must contain named capabilities")
         threshold = _requestion_threshold(
@@ -188,8 +198,17 @@ class JevPredictor:
         )
         if not isinstance(print_io, bool):
             raise ConfigurationError("print_io must be a boolean")
+        if (
+            not isinstance(memory_instruction_template, str)
+            or not memory_instruction_template.strip()
+        ):
+            raise ConfigurationError("memory_instruction_template must be a non-empty string")
+        if "{previous_answer}" not in memory_instruction_template:
+            raise ConfigurationError(
+                "memory_instruction_template must contain {previous_answer}"
+            )
         prompts = (
-            _load_requestion_prompts(DEFAULT_REQUESTION_PROMPT_PATH)
+            _normalize_requestion_prompts(prompt_config["rounds"])
             if requestion_prompts is None
             else _normalize_requestion_prompts(requestion_prompts)
         )
@@ -205,6 +224,7 @@ class JevPredictor:
         self.retry_backoff_seconds = backoff
         self.requestion_confidence_threshold = threshold
         self.requestion_prompts = prompts
+        self.memory_instruction_template = memory_instruction_template
         self.print_io = print_io
 
     def close(self) -> None:
@@ -279,14 +299,16 @@ class JevPredictor:
             if question.get("type") != "score":
                 raise ConfigurationError(f"capability question {name!r} must have type 'score'")
             if criteria is None:
-                # Ten levels are accepted by TypeSafe and make score/(n-1)
-                # normalization unambiguous while retaining enough resolution.
-                criteria = [f"Requirement level {i}/9" for i in range(10)]
+                if name not in self._default_questions:
+                    raise ConfigurationError(f"capability {name!r} needs descriptive criteria")
+                criteria = list(self._default_questions[name]["criteria"])
                 question["criteria"] = criteria
             if not isinstance(criteria, Sequence) or isinstance(criteria, (str, bytes)):
                 raise ConfigurationError(f"criteria for {name!r} must be a sequence")
             if not 2 <= len(criteria) <= 10:
                 raise ConfigurationError(f"criteria for {name!r} must contain 2 to 10 levels")
+            if any(not isinstance(item, str) or not item.strip() for item in criteria):
+                raise ConfigurationError(f"criteria for {name!r} must contain descriptive strings")
             questions[name] = question
         return questions
 
@@ -379,6 +401,7 @@ class JevPredictor:
         capabilities: Sequence[str],
         *,
         round_number: int,
+        previous_answers: Mapping[str, Mapping[str, Any]] | None = None,
     ) -> dict[str, dict[str, Any]]:
         questions: dict[str, dict[str, Any]] = {}
         prompts = self.requestion_prompts.get(round_number, {})
@@ -388,6 +411,16 @@ class JevPredictor:
                 prompt = prompts.get(capability, "")
                 if prompt.strip():
                     question["instructions"] = prompt
+                if previous_answers is not None and capability in previous_answers:
+                    previous_answer = json.dumps(
+                        previous_answers[capability],
+                        ensure_ascii=False,
+                        separators=(",", ":"),
+                    )
+                    memory = self.memory_instruction_template.replace(
+                        "{previous_answer}", previous_answer
+                    )
+                    question["instructions"] = f"{memory}{question['instructions']}"
             questions[capability] = question
         return questions
 
@@ -398,11 +431,13 @@ class JevPredictor:
         capabilities: Sequence[str],
         *,
         round_number: int,
+        previous_answers: Mapping[str, Mapping[str, Any]] | None = None,
     ) -> QuestionRound:
         questions = self._round_questions(
             base_questions,
             capabilities,
             round_number=round_number,
+            previous_answers=previous_answers,
         )
         response = self._post(
             {"state": task, "model": self.model, "questions": questions},
@@ -427,6 +462,7 @@ class JevPredictor:
             )
 
         predictions: dict[str, CapabilityPrediction] = {}
+        round_answers: dict[str, dict[str, Any]] = {}
         for capability, question in questions.items():
             answer = answers[capability]
             if not isinstance(answer, Mapping) or answer.get("type") != "score":
@@ -455,10 +491,12 @@ class JevPredictor:
                 confidence=confidence,
                 round_number=round_number,
             )
+            round_answers[capability] = dict(answer)
         return QuestionRound(
             number=round_number,
             capabilities=tuple(capabilities),
             predictions=predictions,
+            answers=round_answers,
         )
 
     def predict(self, task: str) -> RequirementPrediction:
@@ -476,6 +514,7 @@ class JevPredictor:
                 base_questions,
                 pending,
                 round_number=round_number,
+                previous_answers=rounds[-1].answers if rounds else None,
             )
             rounds.append(result)
             if round_number == REQUESTION_ROUNDS[-1]:
@@ -493,6 +532,25 @@ class JevPredictor:
                 current = selected.get(capability)
                 if current is None or candidate.confidence > current.confidence:
                     selected[capability] = candidate
+
+        self._print_event(
+            "jev_prediction_summary",
+            round_number=rounds[-1].number,
+            capabilities=tuple(base_questions),
+            payload={
+                "calibration_version": self.calibration_version,
+                "rounds": [
+                    {"round": result.number, "scores": {
+                        name: {"requirement_0_10": item.requirement * 10, "confidence": item.confidence}
+                        for name, item in result.predictions.items()
+                    }} for result in rounds
+                ],
+                "selected": {
+                    name: {"round": item.round_number, "requirement_0_10": item.requirement * 10, "confidence": item.confidence}
+                    for name, item in selected.items()
+                },
+            },
+        )
 
         return RequirementPrediction(
             requirements={

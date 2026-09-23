@@ -1,0 +1,74 @@
+{
+  "requestion_confidence_threshold": 0.5,
+  "offline_build_and_registry_reload": "passed",
+  "prediction": {
+    "calibration_version": "router-relative-v1-2026-09-23",
+    "rounds": [
+      {
+        "round": 1,
+        "scores": {
+          "coding": {
+            "requirement_0_10": 3.06,
+            "confidence": 0.69
+          },
+          "instruction_following": {
+            "requirement_0_10": 3.2,
+            "confidence": 0.72
+          },
+          "reasoning": {
+            "requirement_0_10": 2.54,
+            "confidence": 0.51
+          },
+          "tool_use": {
+            "requirement_0_10": 0.0,
+            "confidence": 1.0
+          }
+        }
+      }
+    ],
+    "selected": {
+      "coding": {
+        "round": 1,
+        "requirement_0_10": 3.06,
+        "confidence": 0.69
+      },
+      "instruction_following": {
+        "round": 1,
+        "requirement_0_10": 3.2,
+        "confidence": 0.72
+      },
+      "reasoning": {
+        "round": 1,
+        "requirement_0_10": 2.54,
+        "confidence": 0.51
+      },
+      "tool_use": {
+        "round": 1,
+        "requirement_0_10": 0.0,
+        "confidence": 1.0
+      }
+    }
+  },
+  "decision": {
+    "model": "deepseek-r1-0528",
+    "provider": "deepseek",
+    "tier": "balanced",
+    "requirements": {
+      "coding": 0.306,
+      "instruction_following": 0.32,
+      "reasoning": 0.254,
+      "tool_use": 0.0
+    },
+    "confidences": {
+      "coding": 0.69,
+      "instruction_following": 0.72,
+      "reasoning": 0.51,
+      "tool_use": 1.0
+    },
+    "shortfall": 0.0,
+    "success_probability": null,
+    "fallback": false,
+    "reason": "selected lowest-cost model meeting tier shortfall",
+    "error": null
+  }
+}

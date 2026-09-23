@@ -7,6 +7,7 @@ regenerated from it and is what the online router normally reads.
 
 from __future__ import annotations
 
+import math
 from collections.abc import Iterable, Mapping
 from pathlib import Path
 from typing import Any
@@ -84,8 +85,97 @@ def _benchmark_catalog(data: Any) -> dict[str, Mapping[str, Any]]:
         for required in ("metric", "protocol_id", "source_url"):
             if not isinstance(definition.get(required), str) or not definition[required].strip():
                 raise ConfigurationError(f"benchmark {name!r} needs {required}")
+        bounds = (definition.get("raw_min"), definition.get("raw_max"))
+        for bound in bounds:
+            if bound is not None and (isinstance(bound, bool) or not isinstance(bound, (int, float)) or not math.isfinite(bound)):
+                raise ConfigurationError(f"benchmark {name!r} needs finite numeric raw bounds")
+        if all(bound is not None for bound in bounds) and bounds[0] >= bounds[1]:
+            raise ConfigurationError(f"benchmark {name!r} needs increasing raw bounds")
+        normalization = definition.get("normalization")
+        if normalization is not None:
+            if not isinstance(normalization, Mapping) or normalization.get("method") != "piecewise_linear":
+                raise ConfigurationError(f"benchmark {name!r} needs a piecewise_linear normalization or null")
+            if not isinstance(normalization.get("version"), str) or not normalization["version"]:
+                raise ConfigurationError(f"benchmark {name!r} needs a calibration version")
+            if definition.get("direction") not in ("higher_is_better", "lower_is_better"):
+                raise ConfigurationError(f"benchmark {name!r} has an invalid direction")
+            anchors = normalization.get("anchors")
+            if not isinstance(anchors, list) or len(anchors) < 2:
+                raise ConfigurationError(f"benchmark {name!r} needs at least two anchors")
+            previous_raw = previous_score = None
+            for anchor in anchors:
+                if not isinstance(anchor, Mapping) or set(anchor) != {"raw", "score"}:
+                    raise ConfigurationError(f"benchmark {name!r} has an invalid anchor")
+                x, y = anchor["raw"], anchor["score"]
+                if any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in (x, y)):
+                    raise ConfigurationError(f"benchmark {name!r} anchors must be finite numbers")
+                if not 0 <= y <= 1 or (previous_raw is not None and x <= previous_raw):
+                    raise ConfigurationError(f"benchmark {name!r} anchors need increasing raw values and scores in [0, 1]")
+                if previous_score is not None:
+                    increasing = definition["direction"] == "higher_is_better"
+                    if (increasing and y <= previous_score) or (not increasing and y >= previous_score):
+                        raise ConfigurationError(f"benchmark {name!r} anchor scores must follow its direction strictly")
+                previous_raw, previous_score = x, y
+            expected = (0, 1) if definition["direction"] == "higher_is_better" else (1, 0)
+            if (anchors[0]["score"], anchors[-1]["score"]) != expected:
+                raise ConfigurationError(f"benchmark {name!r} anchors must cover the full [0, 1] scale")
         catalog[name] = definition
     return catalog
+
+
+def _normalize_observation(raw: float | None, definition: Mapping[str, Any]) -> float | None:
+    """Apply frozen anchors only; online model/provider pools never refit them."""
+    normalization = definition.get("normalization")
+    if raw is None or normalization is None:
+        return None
+    anchors = normalization["anchors"]
+    if raw <= anchors[0]["raw"]:
+        return float(anchors[0]["score"])
+    for left, right in zip(anchors, anchors[1:]):
+        if raw <= right["raw"]:
+            ratio = (raw - left["raw"]) / (right["raw"] - left["raw"])
+            return left["score"] + ratio * (right["score"] - left["score"])
+    return float(anchors[-1]["score"])
+
+
+def load_jev_prompt_config(path: str | Path) -> dict[str, Any]:
+    """Validate shared score rubrics and all three rounds in one YAML boundary."""
+    data = load_yaml(path)
+    if not isinstance(data, Mapping) or not isinstance(data.get("calibration_version"), str) or not data["calibration_version"].strip():
+        raise ConfigurationError("Jev prompts need a calibration_version")
+    common = data.get("common_instructions")
+    capabilities = data.get("capabilities")
+    rounds = data.get("rounds")
+    if not isinstance(common, str) or not common.strip() or not isinstance(capabilities, Mapping) or not capabilities:
+        raise ConfigurationError("Jev prompts need common instructions and capability rubrics")
+    if not isinstance(rounds, Mapping):
+        raise ConfigurationError("Jev prompts need three rounds")
+    for name, definition in capabilities.items():
+        if not isinstance(name, str) or not isinstance(definition, Mapping):
+            raise ConfigurationError("invalid Jev capability rubric")
+        criteria = definition.get("criteria")
+        if not isinstance(definition.get("definition"), str) or not definition["definition"].strip():
+            raise ConfigurationError(f"Jev capability {name!r} needs a definition")
+        if not isinstance(criteria, list) or not 2 <= len(criteria) <= 10 or any(not isinstance(c, str) or not c.strip() for c in criteria):
+            raise ConfigurationError(f"Jev capability {name!r} needs 2 to 10 descriptive criteria")
+        if len(set(criteria)) != len(criteria):
+            raise ConfigurationError(f"Jev capability {name!r} has duplicate criteria")
+    questions, requestion = {}, {}
+    for number in (1, 2, 3):
+        entry = rounds.get(number, rounds.get(str(number)))
+        instructions = entry.get("instructions") if isinstance(entry, Mapping) else None
+        if not isinstance(instructions, Mapping) or set(instructions) != set(capabilities):
+            raise ConfigurationError(f"Jev round {number} must cover every configured capability")
+        composed = {}
+        for name, prompt in instructions.items():
+            if not isinstance(prompt, str) or not prompt.strip():
+                raise ConfigurationError(f"Jev round {number}/{name} needs instructions")
+            composed[name] = f"仅评估 {name}：{capabilities[name]['definition']}\n{common}\n{prompt}"
+            if number == 1:
+                questions[name] = {"type": "score", "instructions": composed[name], "criteria": list(capabilities[name]["criteria"])}
+        if number != 1:
+            requestion[number] = {"instructions": composed}
+    return {"version": data["calibration_version"], "questions": questions, "rounds": requestion}
 
 
 def load_benchmark_observations(path: str | Path) -> tuple[set[str], dict[str, dict[str, BenchmarkObservation]]]:
@@ -110,10 +200,12 @@ def load_benchmark_observations(path: str | Path) -> tuple[set[str], dict[str, d
                 # materialized as a zero-valued BenchmarkObservation.
                 continue
             if isinstance(value, (int, float)) and not isinstance(value, bool):
-                value = {"raw_value": value, "normalized_0_1": value}
+                value = {"raw_value": value}
             if not isinstance(value, Mapping):
                 raise ConfigurationError(f"invalid observation for {model_id}/{benchmark_id}")
             payload = dict(value)
+            # Cached derived scores are never a source of truth.
+            payload.pop("normalized_0_1", None)
             payload.setdefault("metric", definition["metric"])
             payload.setdefault("protocol_id", definition["protocol_id"])
             payload.setdefault("source_url", definition["source_url"])
@@ -121,11 +213,21 @@ def load_benchmark_observations(path: str | Path) -> tuple[set[str], dict[str, d
                 if optional in definition:
                     payload.setdefault(optional, definition[optional])
             try:
-                model_result[benchmark_id] = BenchmarkObservation.model_validate(payload)
+                observation = BenchmarkObservation.model_validate(payload)
             except Exception as exc:
                 raise ConfigurationError(
                     f"invalid observation for {model_id}/{benchmark_id}"
                 ) from exc
+            for field in ("metric", "protocol_id", "dataset_version"):
+                if definition.get("normalization") is not None and getattr(observation, field) != definition.get(field):
+                    raise ConfigurationError(f"observation protocol mismatch: {model_id}/{benchmark_id}/{field}")
+            if observation.raw_value is not None:
+                low, high = definition.get("raw_min"), definition.get("raw_max")
+                if (low is not None and observation.raw_value < low) or (high is not None and observation.raw_value > high):
+                    raise ConfigurationError(f"raw score outside benchmark range: {model_id}/{benchmark_id}")
+            model_result[benchmark_id] = observation.model_copy(update={
+                "normalized_0_1": _normalize_observation(observation.raw_value, definition)
+            })
         result[model_id] = model_result
     return set(catalog), result
 
@@ -153,7 +255,8 @@ def load_model_metadata(
         # cached capability vector is ignored on the metadata load path.
         payload.pop("capabilities", None)
         payload.pop("capability_benchmark_counts", None)
-        if "benchmark_scores" not in payload:
+        payload.pop("calibration_version", None)
+        if benchmarks_path is not None or "benchmark_scores" not in payload:
             payload["benchmark_scores"] = observations.get(model_id, {})
         try:
             result.append(ModelMetadata.model_validate(payload))
@@ -165,7 +268,7 @@ def load_model_metadata(
 class ModelRegistry:
     """Stable in-memory registry of routing-facing model profiles."""
 
-    def __init__(self, models: Iterable[ModelProfile] = ()) -> None:
+    def __init__(self, models: Iterable[ModelProfile] = (), *, excluded_models: Mapping[str, str] | None = None) -> None:
         profiles: dict[str, ModelProfile] = {}
         for model in models:
             try:
@@ -176,6 +279,7 @@ class ModelRegistry:
                 raise RegistryError(f"duplicate model_id: {profile.model_id}")
             profiles[profile.model_id] = profile
         self._models = profiles
+        self.excluded_models = dict(excluded_models or {})
 
     @classmethod
     def from_yaml(cls, path: str | Path) -> "ModelRegistry":
@@ -193,7 +297,10 @@ class ModelRegistry:
                 profiles.append(ModelProfile.model_validate(payload))
             except Exception as exc:
                 raise RegistryError(f"invalid model profile: {model_id}") from exc
-        return cls(profiles)
+        excluded = data.get("excluded_models", {})
+        if not isinstance(excluded, Mapping) or any(not isinstance(k, str) or not isinstance(v, str) for k, v in excluded.items()):
+            raise ConfigurationError("excluded_models must map model ids to reasons")
+        return cls(profiles, excluded_models=excluded)
 
     load = from_yaml
 
@@ -213,7 +320,25 @@ class ModelRegistry:
         builder = CapabilityBuilder.from_yaml(
             capabilities_path, aggregator, benchmark_ids=benchmark_ids
         )
-        return cls(builder.build(metadata))
+        version = load_yaml(capabilities_path).get("calibration_version")
+        if not isinstance(version, str) or not version.strip():
+            raise ConfigurationError("capability definitions need a calibration_version")
+        catalog = _benchmark_catalog(load_yaml(benchmarks_path))
+        active_benchmarks = {name for names in builder.definitions.values() for name in names}
+        for name in active_benchmarks:
+            normalization = catalog[name].get("normalization")
+            if not normalization or normalization["version"] != version:
+                raise ConfigurationError(f"active benchmark {name!r} has no matching calibration version")
+        eligible, excluded = [], {}
+        for model in metadata:
+            if any(name in active_benchmarks and score.normalized_0_1 is not None for name, score in model.benchmark_scores.items()):
+                eligible.append(model)
+            else:
+                excluded[model.model_id] = "No observations for the active calibrated benchmarks; original metadata is retained separately."
+        if not eligible:
+            raise ConfigurationError("no models have active calibrated benchmark observations")
+        profiles = [profile.model_copy(update={"calibration_version": version}) for profile in builder.build(eligible)]
+        return cls(profiles, excluded_models=excluded)
 
     def get(self, model_id: str) -> ModelProfile | None:
         return self._models.get(model_id)
@@ -234,7 +359,7 @@ class ModelRegistry:
     def save(self, path: str | Path) -> None:
         """Write deterministic cached profiles suitable for version control."""
 
-        payload: dict[str, Any] = {"models": {}}
+        payload: dict[str, Any] = {"models": {}, "excluded_models": self.excluded_models}
         for profile in self.list_models():
             model = profile.model_dump(mode="json", exclude_none=False)
             # Preserve the concise mapping shape used by the checked-in YAML.
